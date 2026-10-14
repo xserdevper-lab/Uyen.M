@@ -7,8 +7,8 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Uyen.M">
-  <meta name="description" content="กระเป๋าเงิน Uyen.M รับยอดจากแอปเงินรวมและติดตามรายการล่าสุด">
-  <title>Uyen.M Wallet</title>
+  <meta name="description" content="กระเป๋าค่ากิน Uyen.M รับงบจากแอปเงินรวมและติดตามค่าอาหาร">
+  <title>Uyen.M Meal Wallet</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -82,7 +82,7 @@
   <dialog id="paymentDialog">
     <form id="paymentForm" method="dialog">
       <div class="dialog-header"><div><p class="eyebrow" data-i18n="sendViaMain">ส่งคำขอไปยังแอปเงินรวม</p><h2 data-i18n="pay">จ่ายเงิน</h2></div><button class="dialog-close" type="button" data-close aria-label="ปิด">×</button></div>
-      <label><span data-i18n="recipient">ผู้รับ</span><input id="paymentRecipient" name="recipient" maxlength="80" data-i18n-placeholder="recipientPlaceholder" placeholder="ชื่อหรือรายละเอียดผู้รับ" required></label>
+      <label><span data-i18n="recipient">ร้านอาหาร</span><input id="paymentRecipient" name="recipient" maxlength="80" data-i18n-placeholder="recipientPlaceholder" placeholder="ชื่อร้านหรือรายการอาหาร" required></label>
       <label><span data-i18n="amount">จำนวนเงิน (บาท)</span><input id="paymentAmount" name="amount" type="number" min="1" step="0.01" inputmode="decimal" placeholder="เช่น 500" required></label>
       <label><span data-i18n="note">หมายเหตุ</span><textarea id="paymentNote" name="note" rows="2" maxlength="120" data-i18n-placeholder="optional" placeholder="ไม่บังคับ"></textarea></label>
       <p class="form-note" data-i18n="paymentNotice">คำขอนี้จะถูกส่งให้แอปเงินรวมอนุมัติ ยอดจะลดเมื่อแอปหลักยืนยันการจ่ายเท่านั้น</p>
