@@ -69,3 +69,8 @@ input:focus,textarea:focus { border-color:var(--accent); box-shadow:0 0 0 3px rg
 
 /* Shared footer: navigation links must never have browser-default underlines. */
 .bottom-nav .nav-item,.bottom-nav .nav-item:link,.bottom-nav .nav-item:visited,.bottom-nav .nav-item:hover,.bottom-nav .nav-item:active,.bottom-nav .nav-item span{ text-decoration:none !important; }
+
+/* Align quick action links and buttons identically, including gold price. */
+.quick-actions .quick-action{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;width:100%;min-width:0;box-sizing:border-box;text-align:center;text-decoration:none!important;color:inherit;font:inherit;font-size:10px;font-weight:500;line-height:1.35;}
+.quick-actions .quick-action>span:last-child{display:block;width:100%;text-align:center;white-space:nowrap;text-decoration:none!important;}
+.quick-actions .quick-action .quick-icon{flex:0 0 48px;margin:0 auto 6px;}
