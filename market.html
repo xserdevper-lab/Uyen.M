@@ -5,7 +5,7 @@
 <meta name="theme-color" content="#111111"><title>ราคาทองและน้ำมัน | Uyen.M</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=10">
+<link rel="stylesheet" href="assets/styles.css?v=11">
 <style>
 .market-top{display:flex;align-items:center;gap:12px}.market-top .back-link{width:44px;height:44px;display:grid;place-items:center;border-radius:15px;background:#f4f3f1;text-decoration:none;color:#171717;font-size:24px}.market-top .heading{flex:1}
 .market-hero{min-height:175px}.market-hero .balance{margin:23px 0 17px;font-size:27px}.market-hero .card-foot{align-items:center}
@@ -15,7 +15,7 @@
 .market-values{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:16px}.market-value{background:#f4f3f1;border-radius:14px;padding:12px}.market-value span{display:block;color:#777;font-size:11px}.market-value strong{display:block;font-size:clamp(17px,5vw,23px);margin-top:5px;white-space:nowrap}
 .market-note{font-size:11px;line-height:1.7;color:#777;margin:12px 0 0}.market-note a{color:#d45c1d}.market-alert{border-radius:12px;background:#fff2d6;color:#7a4a00;padding:10px 12px;font-size:11px;margin-top:12px}.market-status{color:#e6e6e6;font-size:11px}
 .oil-frame{display:block;width:100%;height:875px;border:0;background:#fff}.oil-embed{overflow:hidden;border:1px solid #eee;border-radius:14px;margin-top:14px}.market-refresh{font-size:19px}
-.market-app .bottom-nav{grid-template-columns:repeat(5,minmax(0,1fr))}.market-app .nav-item{text-decoration:none}.market-app .nav-item.active{color:#fff}
+.market-app .bottom-nav{grid-template-columns:repeat(4,minmax(0,1fr))}.market-app .nav-item{text-decoration:none}.market-app .nav-item.active{color:#fff}
 @media(max-width:370px){.market-app .nav-item{font-size:8px}.market-card{padding:14px}.market-value{padding:9px}}
 </style>
 </head>
@@ -44,8 +44,10 @@
 <p class="market-note">ตรวจสอบราคาทองใหม่ทุก 60 วินาที · ราคาขึ้นอยู่กับเวลาเผยแพร่ของแหล่งข้อมูล ไม่ใช่ราคาซื้อขายที่รับประกัน</p>
 </div>
 <nav class="bottom-nav" aria-label="เมนูหลัก">
-<a class="nav-item" href="index.html"><svg viewBox="0 0 24 24"><path d="m3 11 9-8 9 8v9h-6v-6H9v6H3z"/></svg><span>หน้าหลัก</span></a>
-<a class="nav-item active" href="market.html"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-9M16 6h5v5"/></svg><span>ราคาตลาด</span></a>
+<button class="nav-item" type="button" onclick="location.href=\'index.html\'"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 9-8 9 8v9h-6v-6H9v6H3z"/></svg><span data-i18n="home">หน้าหลัก</span></button>
+<a class="nav-item active" href="market.html" aria-label="ราคาทองและน้ำมัน"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l6-6 4 4 8-9M16 6h5v5"/></svg><span>ราคาตลาด</span></a>
+<button class="nav-item" onclick="location.href=\'index.html\'" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v11H4zM4 10h16"/></svg><span data-i18n="pay">จ่ายเงิน</span></button>
+<button class="nav-item" onclick="location.href=\'index.html\'" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h11l-3-3m2 13H6l3 3"/></svg><span data-i18n="requestShort">คำขอ</span></button>
 </nav></section></main>
 <script>
 (function(){'use strict';
