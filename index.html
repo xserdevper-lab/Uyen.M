@@ -4,12 +4,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#111111">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Uyen.M">
   <meta name="description" content="กระเป๋าเงิน Uyen.M รับยอดจากแอปเงินรวมและติดตามรายการล่าสุด">
   <title>Uyen.M Wallet</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/icon.svg">
 </head>
 <body>
   <main class="app-shell">
@@ -25,6 +31,7 @@
       </header>
       <div class="content">
         <p class="status-chip" id="statusChip" hidden></p>
+        <button class="install-button" id="installButton" type="button" hidden>ติดตั้งแอปบนเครื่องนี้</button>
         <section class="hero-grid" aria-label="ยอดเงินและเมนู">
           <nav class="quick-actions" aria-label="เมนูด่วน">
             <button class="quick-action" id="requestButton" type="button"><span class="quick-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0-12 4 4m-4-4L8 7M5 11v8h14v-8"/></svg></span><span>ขอรับเงิน</span></button>
@@ -73,4 +80,5 @@
   <script src="assets/app.js"></script>
 </body>
 </html>
+
 
