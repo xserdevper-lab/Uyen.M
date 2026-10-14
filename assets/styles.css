@@ -16,8 +16,9 @@ h1,h2,p { margin-top:0; } h1 { margin-bottom:0; font-size:18px; line-height:1.2;
 .content { padding:22px 18px 112px; }
 .status-chip { margin:0 0 12px; padding:9px 12px; border-radius:12px; color:#7a4a00; background:#fff2d6; font-size:12px; }
 .install-button { width:100%; margin:0 0 12px; padding:11px 14px; border:0; border-radius:12px; color:#fff; background:var(--ink); cursor:pointer; font-size:12px; font-weight:600; }
-.hero-grid,.activity-grid { display:grid; grid-template-columns:72px 1fr; gap:16px; align-items:start; }
-.hero-grid .balance-card { grid-column:2; width:100%; }
+.hero-grid { display:block; }
+.activity-grid { display:grid; grid-template-columns:72px 1fr; gap:16px; align-items:start; }
+.hero-grid .balance-card { width:100%; }
 .activity-grid { margin-top:30px; }
 .quick-actions { display:flex; flex-direction:column; justify-content:flex-start; gap:12px; }
 .quick-action { border:0; background:transparent; padding:0; cursor:pointer; font-size:10px; font-weight:500; }
