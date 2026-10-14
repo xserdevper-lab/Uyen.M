@@ -2,7 +2,7 @@
 <html lang="th">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#111111"><title>ราคาน้ำมัน | Uyen.M</title>
+<meta name="theme-color" content="#111111"><title>Daily Info | Uyen.M</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css?v=16">
@@ -22,13 +22,17 @@
 <body><main class="app-shell"><section class="wallet-app market-app" aria-label="Uyen.M Market">
 <header class="topbar market-top">
 <a class="back-link" href="./" aria-label="กลับหน้าหลัก">‹</a>
-<div class="heading"><p class="eyebrow">UYEN.M • MARKET</p><h1 data-t="title">ราคาน้ำมัน</h1></div><button class="icon-button" type="button" id="langToggle" aria-label="Switch language">EN</button>
+<div class="heading"><p class="eyebrow">UYEN.M • DAILY INFO</p><h1 data-t="title">ข้อมูลวันนี้</h1></div><button class="icon-button" type="button" id="langToggle" aria-label="Switch language">EN</button>
 <a class="icon-button market-refresh" href="market.html" aria-label="โหลดหน้าใหม่" style="text-decoration:none">↻</a>
 </header>
 <div class="content">
 <article class="balance-card market-hero"><div class="card-glow" aria-hidden="true"></div>
-<div class="card-head"><span class="card-label">MARKET WATCH</span><span class="brand-mark">U<span>M</span></span></div>
-<p class="balance" data-t="hero">เช็กราคาน้ำมัน</p><div class="card-foot"><span class="market-status" id="marketStatus" role="status">ข้อมูลจากเว็บไซต์ผู้ให้บริการ</span><span class="secure-badge">● OFFICIAL SOURCES</span></div></article>
+<div class="card-head"><span class="card-label">DAILY INFO</span><span class="brand-mark">U<span>M</span></span></div>
+<p class="balance" data-t="hero">ข้อมูลสำคัญวันนี้</p><div class="card-foot"><span class="market-status" id="marketStatus" role="status">ข้อมูลจากเว็บไซต์ผู้ให้บริการ</span><span class="secure-badge">● OFFICIAL SOURCES</span></div></article>
+<section class="market-section" aria-label="Weather and air quality"><div class="section-heading"><div><p class="eyebrow">YOUR LOCATION</p><h2 id="dailyLocation">กำลังตรวจสอบตำแหน่ง...</h2></div><button type="button" id="retryLocation" class="icon-button" aria-label="อัปเดตตำแหน่ง">⌖</button></div>
+<div class="market-values" style="margin-top:0"><article class="market-card" style="margin:0;padding:15px"><p class="market-muted" data-daily="weather">🌤️ สภาพอากาศ</p><strong id="weatherValue" style="font-size:24px">—</strong><p class="market-note" id="weatherDetail">รอข้อมูล</p></article>
+<article class="market-card" style="margin:0;padding:15px"><p class="market-muted" data-daily="air">🌫️ ฝุ่น PM2.5</p><strong id="pmValue" style="font-size:24px">—</strong><p class="market-note" id="pmDetail">รอข้อมูล</p></article></div><p class="market-note" id="locationNote">ใช้ตำแหน่งเมื่อได้รับอนุญาตเท่านั้น หากไม่ได้อนุญาตจะใช้พิษณุโลกเป็นค่าเริ่มต้น</p></section>
+<section class="market-section"><div class="section-heading"><div><p class="eyebrow">EXCHANGE RATES</p><h2 data-daily="fx">อัตราแลกเปลี่ยน</h2></div><span class="last-sync">THB</span></div><article class="market-card"><div id="fxRates" class="market-values" style="margin-top:0"><p class="market-note">กำลังโหลด...</p></div><p class="market-note" id="fxNote">ที่มา: Frankfurter / ECB • อัตราอ้างอิง ไม่ใช่อัตราซื้อขายธนาคาร</p></article></section>
 <section class="market-section"><div class="section-heading"><div><p class="eyebrow">FUEL PRICE</p><h2 data-t="bangchak">ราคาน้ำมันบางจาก</h2></div><span class="last-sync">บาท / ลิตร</span></div>
 <article class="market-card"><div class="market-card-head"><span class="market-icon">◈</span><div><h3>ราคาขายปลีกล่าสุด</h3><p class="market-muted">ข้อมูลจากบางจากโดยตรง</p></div></div>
 <div class="oil-embed"><iframe class="oil-frame" scrolling="no" tabindex="-1" title="ราคาน้ำมันล่าสุดจากบางจาก" src="https://oil-price.bangchak.co.th/BcpOilPrice1/th" loading="eager" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
@@ -37,20 +41,36 @@
 </div>
 <nav class="bottom-nav" aria-label="เมนูหลัก">
   <a class="nav-item " href="./"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 9-8 9 8v9h-6v-6H9v6H3z"/></svg><span data-t="home">หน้าหลัก</span></a>
-  <a class="nav-item active" href="market.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l6-6 4 4 8-9M16 6h5v5"/></svg><span data-t="market">ราคาตลาด</span></a>
+  <a class="nav-item active" href="market.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l6-6 4 4 8-9M16 6h5v5"/></svg><span data-t="market">ข้อมูลวันนี้</span></a>
   <a class="nav-item" href="./?action=pay" data-action="pay"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v11H4zM4 10h16"/></svg><span data-t="pay">Payment</span></a>
   <a class="nav-item" href="./?action=request" data-action="request"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h11l-3-3m2 13H6l3 3"/></svg><span data-t="requests">คำขอ</span></a>
 </nav></section></main>
 <script>
 (function(){
 const dict={
-th:{title:"ราคาน้ำมัน",hero:"เช็กราคาน้ำมัน",gold:"ราคาทองคำ",goldTitle:"ตรวจสอบราคาทองคำล่าสุด",goldLink:"ดูราคาทองคำจากสมาคมค้าทองคำ ↗",bangchak:"ราคาน้ำมันบางจาก",ptt:"ราคาน้ำมัน ปตท.",home:"หน้าหลัก",market:"ราคาตลาด",pay:"Payment",requests:"คำขอ",pttWaiting:"กำลังตรวจสอบข้อมูลจาก ปตท. (อัปเดตโดยระบบทุกชั่วโมง)",unavailable:"ยังไม่มีไฟล์ราคาจากระบบอัปเดต ปตท. กรุณาตรวจสอบการทำงานของ GitHub Actions หรือเปิดเว็บไซต์ต้นทาง",updated:"ข้อมูลอัปเดต: "},
-en:{title:"Fuel Prices",hero:"Check fuel prices",gold:"Gold Prices",goldTitle:"Latest Thai gold prices",goldLink:"View Gold Traders Association prices ↗",bangchak:"Bangchak Fuel Prices",ptt:"PTT Fuel Prices",home:"Home",market:"Market",pay:"Payment",requests:"Requests",pttWaiting:"Checking available PTT price data",unavailable:"The PTT data update has not published prices yet. Check GitHub Actions or visit the official website.",updated:"Data updated: "}
+th:{title:"ข้อมูลวันนี้",hero:"ข้อมูลสำคัญวันนี้",gold:"ราคาทองคำ",goldTitle:"ตรวจสอบราคาทองคำล่าสุด",goldLink:"ดูราคาทองคำจากสมาคมค้าทองคำ ↗",bangchak:"ราคาน้ำมันบางจาก",ptt:"ราคาน้ำมัน ปตท.",home:"หน้าหลัก",market:"ข้อมูลวันนี้",pay:"Payment",requests:"คำขอ",pttWaiting:"กำลังตรวจสอบข้อมูลจาก ปตท. (อัปเดตโดยระบบทุกชั่วโมง)",unavailable:"ยังไม่มีไฟล์ราคาจากระบบอัปเดต ปตท. กรุณาตรวจสอบการทำงานของ GitHub Actions หรือเปิดเว็บไซต์ต้นทาง",updated:"ข้อมูลอัปเดต: "},
+en:{title:"Daily Info",hero:"Your daily essentials",gold:"Gold Prices",goldTitle:"Latest Thai gold prices",goldLink:"View Gold Traders Association prices ↗",bangchak:"Bangchak Fuel Prices",ptt:"PTT Fuel Prices",home:"Home",market:"Daily Info",pay:"Payment",requests:"Requests",pttWaiting:"Checking available PTT price data",unavailable:"The PTT data update has not published prices yet. Check GitHub Actions or visit the official website.",updated:"Data updated: "}
 };
 let lang=localStorage.getItem("uyen-language")==="en"?"en":"th";
 function translate(){document.documentElement.lang=lang;document.querySelectorAll("[data-t]").forEach(el=>{el.textContent=dict[lang][el.dataset.t]||el.textContent});document.getElementById("langToggle").textContent=lang==="th"?"EN":"TH";if(window.pttLast)render(window.pttLast);else document.getElementById("pttStatus").textContent=dict[lang].pttWaiting}
 function render(d){const wrap=document.getElementById("pttPrices");wrap.replaceChildren();for(const p of d.prices){if(!p||typeof p.name!=="string"||!Number.isFinite(Number(p.price)))continue;const box=document.createElement("div");box.className="market-value";const name=document.createElement("span");name.textContent=p.name;const price=document.createElement("strong");price.textContent=Number(p.price).toLocaleString(lang==="th"?"th-TH":"en-US",{minimumFractionDigits:2,maximumFractionDigits:2});box.append(name,price);wrap.append(box)}const t=new Date(d.updatedAt);document.getElementById("pttStatus").textContent=wrap.children.length?dict[lang].updated+(isNaN(t.getTime())?"—":t.toLocaleString(lang==="th"?"th-TH":"en-US",{timeZone:"Asia/Bangkok",dateStyle:"medium",timeStyle:"short"})):dict[lang].unavailable}
 document.getElementById("langToggle").addEventListener("click",()=>{lang=lang==="th"?"en":"th";localStorage.setItem("uyen-language",lang);translate()});translate();
 fetch("./data/ptt-prices.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw Error("not published");return r.json()}).then(d=>{if(!Array.isArray(d.prices)||!d.prices.length)throw Error("empty");window.pttLast=d;render(d)}).catch(()=>{document.getElementById("pttStatus").textContent=dict[lang].unavailable});
+})();
+</script><script>
+(function(){
+const $=id=>document.getElementById(id);let lang=localStorage.getItem("uyen-language")==="en"?"en":"th";
+const messages={th:{weather:"🌤️ สภาพอากาศ",air:"🌫️ ฝุ่น PM2.5",fx:"อัตราแลกเปลี่ยน",loading:"กำลังโหลด...",rain:"โอกาสฝน",pmUnit:"µg/m³",locDefault:"พิษณุโลก (ค่าเริ่มต้น)",locCurrent:"ตำแหน่งปัจจุบัน",locNote:"ใช้ตำแหน่งเมื่อได้รับอนุญาตเท่านั้น",locFallback:"ไม่สามารถใช้ตำแหน่งได้ จึงแสดงข้อมูลพิษณุโลก",fail:"โหลดข้อมูลไม่สำเร็จ",fxNote:"ที่มา: Frankfurter / ECB • อัตราอ้างอิง ไม่ใช่อัตราซื้อขายธนาคาร"},en:{weather:"🌤️ Weather",air:"🌫️ PM2.5",fx:"Exchange rates",loading:"Loading...",rain:"Rain chance",pmUnit:"µg/m³",locDefault:"Phitsanulok (default)",locCurrent:"Current location",locNote:"Location is used only with your permission",locFallback:"Location unavailable; showing Phitsanulok",fail:"Unable to load data",fxNote:"Source: Frankfurter / ECB • Reference rates, not bank transaction rates"}};
+const dict=()=>messages[lang];function label(){lang=localStorage.getItem("uyen-language")==="en"?"en":"th";document.querySelectorAll("[data-daily]").forEach(el=>el.textContent=dict()[el.dataset.daily]);$("fxNote").textContent=dict().fxNote;}
+async function json(url){const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),12000);try{const response=await fetch(url,{signal:controller.signal,cache:"no-store"});if(!response.ok)throw Error("HTTP "+response.status);return await response.json()}finally{clearTimeout(timer)}}
+const fixed={latitude:16.8211,longitude:100.2659};let last=fixed;let locationType="default";
+async function weather(){const {latitude,longitude}=last;const q="latitude="+latitude+"&longitude="+longitude+"&timezone=Asia%2FBangkok";
+const results=await Promise.allSettled([json("https://api.open-meteo.com/v1/forecast?"+q+"&current=temperature_2m,relative_humidity_2m&hourly=precipitation_probability&forecast_days=1"),json("https://air-quality-api.open-meteo.com/v1/air-quality?"+q+"&current=pm2_5")]);
+const w=results[0];if(w.status==="fulfilled"&&w.value.current){const v=w.value;$("weatherValue").textContent=Number(v.current.temperature_2m).toFixed(1)+"°C";let rain="";if(v.hourly&&v.hourly.time){const hour=v.current.time.slice(0,13);const ix=v.hourly.time.findIndex(t=>t.slice(0,13)===hour);if(ix>=0)rain=" • "+dict().rain+" "+v.hourly.precipitation_probability[ix]+"%";}$("weatherDetail").textContent=(v.current.relative_humidity_2m??"—")+"% humidity"+rain}else{$("weatherValue").textContent="—";$("weatherDetail").textContent=dict().fail}
+const air=results[1];if(air.status==="fulfilled"&&air.value.current&&Number.isFinite(Number(air.value.current.pm2_5))){$("pmValue").textContent=Number(air.value.current.pm2_5).toFixed(1);$("pmDetail").textContent=dict().pmUnit+" • Open-Meteo (model)"}else{$("pmValue").textContent="—";$("pmDetail").textContent=dict().fail}}
+async function fx(){try{const data=await json("https://api.frankfurter.dev/v1/latest?base=THB&symbols=USD,EUR,JPY");if(!data.rates)throw Error("no rates");const root=$("fxRates");root.replaceChildren();for(const [code,unit] of [["USD",1],["EUR",1],["JPY",100]]){const rate=data.rates[code];if(!Number.isFinite(Number(rate))||rate<=0)continue;const box=document.createElement("div");box.className="market-value";const title=document.createElement("span");title.textContent=unit+" "+code+" → THB";const value=document.createElement("strong");value.style.fontSize="19px";value.textContent=(unit/rate).toLocaleString(lang==="en"?"en-US":"th-TH",{maximumFractionDigits:3,minimumFractionDigits:2});box.append(title,value);root.append(box)}if(!root.children.length)throw Error("empty");$("fxNote").textContent=dict().fxNote+" • "+data.date}catch(e){$("fxRates").textContent=dict().fail}}
+function locationUpdate(){label();$("dailyLocation").textContent=locationType==="current"?dict().locCurrent:dict().locDefault;weather()}
+function locate(){if(!navigator.geolocation){locationType="default";$("locationNote").textContent=dict().locFallback;locationUpdate();return}navigator.geolocation.getCurrentPosition(p=>{last={latitude:p.coords.latitude,longitude:p.coords.longitude};locationType="current";$("locationNote").textContent=dict().locNote;locationUpdate()},()=>{last=fixed;locationType="default";$("locationNote").textContent=dict().locFallback;locationUpdate()},{enableHighAccuracy:false,timeout:9000,maximumAge:600000})}
+$("retryLocation").addEventListener("click",locate);window.addEventListener("storage",()=>{label();locationUpdate();fx()});label();fx();locate();setInterval(()=>{if(!document.hidden){weather();fx()}},600000);
 })();
 </script></body></html>
