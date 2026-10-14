@@ -17,7 +17,7 @@ h1,h2,p { margin-top:0; } h1 { margin-bottom:0; font-size:18px; line-height:1.2;
 .status-chip { margin:0 0 12px; padding:9px 12px; border-radius:12px; color:#7a4a00; background:#fff2d6; font-size:12px; }
 .install-button { width:100%; margin:0 0 12px; padding:11px 14px; border:0; border-radius:12px; color:#fff; background:var(--ink); cursor:pointer; font-size:12px; font-weight:600; }
 .hero-grid { display:grid; grid-template-columns:72px 1fr; gap:16px; align-items:stretch; }
-.quick-actions { display:flex; flex-direction:column; justify-content:space-between; gap:12px; }
+.quick-actions { display:flex; flex-direction:column; justify-content:flex-start; gap:12px; }
 .quick-action { border:0; background:transparent; padding:0; cursor:pointer; font-size:10px; font-weight:500; }
 .quick-icon { width:48px; height:48px; display:grid; place-items:center; margin:0 auto 6px; border-radius:50%; background:var(--card); box-shadow:0 8px 18px rgba(30,27,24,.08); transition:transform .2s,background .2s; }
 .quick-action:hover .quick-icon { transform:translateY(-2px); background:#fff7f1; }
