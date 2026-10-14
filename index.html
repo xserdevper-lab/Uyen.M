@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css?v=15">
+  <link rel="stylesheet" href="assets/styles.css?v=16">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/icon.svg">
@@ -52,6 +52,7 @@
           <nav class="quick-actions" aria-label="เมนูด่วน">
             <button class="quick-action" id="historyButton" type="button"><span class="quick-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4v5h5M5.5 9A8 8 0 1 1 4 14m8-6v5l3 2"/></svg></span><span data-i18n="history">ประวัติ</span></button>
             <button class="quick-action" id="infoButton" type="button"><span class="quick-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8h.01"/></svg></span><span data-i18n="help">วิธีใช้</span></button>
+            <a class="quick-action" href="https://www.goldtraders.or.th/" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit"><span class="quick-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 8 8-8 12-8-12zM4 10h16M9 10l3 12 3-12"/></svg></span><span id="goldQuickLabel">ราคาทอง</span></a>
           </nav>
           <section class="activity" id="activitySection">
             <div class="section-heading"><div><p class="eyebrow" data-i18n="activity">ความเคลื่อนไหว</p><h2 data-i18n="latest">รายการล่าสุด</h2></div><span class="last-sync" id="lastSync">ยังไม่ซิงก์</span></div>
@@ -115,7 +116,7 @@
   </dialog>
   <script src="config.js?v=4"></script>
   <script src="assets/app.js?v=7"></script>
-</body>
+<script>(function(){const label=document.getElementById("goldQuickLabel");if(label){const apply=()=>label.textContent=localStorage.getItem("uyen-language")==="en"?"Gold price":"ราคาทอง";apply();window.addEventListener("storage",apply);const select=document.getElementById("languageSelect");if(select)select.addEventListener("change",()=>setTimeout(apply,0));}})();</script></body>
 </html>
 
 
