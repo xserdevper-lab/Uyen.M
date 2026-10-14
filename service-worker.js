@@ -1,4 +1,4 @@
-const CACHE_NAME = "uyen-wallet-v16";
+const CACHE_NAME = "uyen-wallet-v17";
 const APP_SHELL = ["./", "./index.html", "./market.html", "./config.js?v=4", "./assets/styles.css?v=16", "./assets/app.js?v=7", "./assets/icon.svg", "./manifest.webmanifest"];
 self.addEventListener("install", event => { event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL)).then(() => self.skipWaiting())); });
 self.addEventListener("activate", event => { event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key)))).then(() => self.clients.claim())); });
