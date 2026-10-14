@@ -22,24 +22,36 @@
 <body><main class="app-shell"><section class="wallet-app market-app" aria-label="Uyen.M Market">
 <header class="topbar market-top">
 <a class="back-link" href="./" aria-label="กลับหน้าหลัก">‹</a>
-<div class="heading"><p class="eyebrow">UYEN.M • ราคาตลาด</p><h1>ราคาน้ำมัน</h1></div>
+<div class="heading"><p class="eyebrow">UYEN.M • MARKET</p><h1 data-t="title">ราคาน้ำมัน</h1></div><button class="icon-button" type="button" id="langToggle" aria-label="Switch language">EN</button>
 <a class="icon-button market-refresh" href="market.html" aria-label="โหลดหน้าใหม่" style="text-decoration:none">↻</a>
 </header>
 <div class="content">
 <article class="balance-card market-hero"><div class="card-glow" aria-hidden="true"></div>
 <div class="card-head"><span class="card-label">MARKET WATCH</span><span class="brand-mark">U<span>M</span></span></div>
-<p class="balance">เช็กราคาน้ำมัน</p><div class="card-foot"><span class="market-status" id="marketStatus" role="status">ข้อมูลจากเว็บไซต์ผู้ให้บริการ</span><span class="secure-badge">● OFFICIAL SOURCES</span></div></article>
-<section class="market-section"><div class="section-heading"><div><p class="eyebrow">GOLD PRICE</p><h2>ราคาทองคำ</h2></div></div><article class="market-card"><div class="market-card-head"><span class="market-icon">◆</span><div><h3>ตรวจสอบราคาทองคำล่าสุด</h3><p class="market-muted">เปิดเว็บไซต์ต้นทางเพื่อดูราคาซื้อและขาย</p></div></div><p class="market-note"><a href="https://www.goldtraders.or.th/" target="_blank" rel="noopener noreferrer">ดูราคาทองคำจากสมาคมค้าทองคำ ↗</a></p></article></section>
-<section class="market-section"><div class="section-heading"><div><p class="eyebrow">FUEL PRICE</p><h2>ราคาน้ำมันบางจาก</h2></div><span class="last-sync">บาท / ลิตร</span></div>
+<p class="balance" data-t="hero">เช็กราคาน้ำมัน</p><div class="card-foot"><span class="market-status" id="marketStatus" role="status">ข้อมูลจากเว็บไซต์ผู้ให้บริการ</span><span class="secure-badge">● OFFICIAL SOURCES</span></div></article>
+<section class="market-section"><div class="section-heading"><div><p class="eyebrow">GOLD PRICE</p><h2 data-t="gold">ราคาทองคำ</h2></div></div><article class="market-card"><div class="market-card-head"><span class="market-icon">◆</span><div><h3 data-t="goldTitle">ตรวจสอบราคาทองคำล่าสุด</h3><p class="market-muted">เปิดเว็บไซต์ต้นทางเพื่อดูราคาซื้อและขาย</p></div></div><p class="market-note"><a href="https://www.goldtraders.or.th/" target="_blank" rel="noopener noreferrer" data-t="goldLink">ดูราคาทองคำจากสมาคมค้าทองคำ ↗</a></p></article></section>
+<section class="market-section"><div class="section-heading"><div><p class="eyebrow">FUEL PRICE</p><h2 data-t="bangchak">ราคาน้ำมันบางจาก</h2></div><span class="last-sync">บาท / ลิตร</span></div>
 <article class="market-card"><div class="market-card-head"><span class="market-icon">◈</span><div><h3>ราคาขายปลีกล่าสุด</h3><p class="market-muted">ข้อมูลจากบางจากโดยตรง</p></div></div>
 <div class="oil-embed"><iframe class="oil-frame" title="ราคาน้ำมันล่าสุดจากบางจาก" src="https://oil-price.bangchak.co.th/BcpOilPrice1/th" loading="eager" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
-<p class="market-note">ข้อมูลในกรอบแสดงโดยบางจาก ราคาจริงอาจต่างตามสถานีบริการ หากไม่แสดง <a href="https://www.bangchak.co.th/th/OilPrice/" target="_blank" rel="noopener">เปิดราคาน้ำมันที่เว็บไซต์บางจาก ↗</a></p></article></section><section class="market-section"><div class="section-heading"><div><p class="eyebrow">PTT STATION</p><h2>ราคาน้ำมัน ปตท.</h2></div><span class="last-sync">บาท / ลิตร</span></div><article class="market-card"><div class="market-card-head"><span class="market-icon">◈</span><div><h3>PTT Station</h3><p class="market-muted">ตรวจสอบราคาน้ำมันจาก ปตท. โดยตรง</p></div></div><p class="market-note">กดเพื่อเปิดข้อมูลจากเว็บไซต์ของผู้ให้บริการ โดยไม่แสดงราคาที่ไม่สามารถยืนยันได้</p><p class="market-note"><a href="https://www.pttstation.com/" target="_blank" rel="noopener noreferrer">ดูราคาน้ำมัน ปตท. ↗</a></p></article></section>
+<p class="market-note">ข้อมูลในกรอบแสดงโดยบางจาก ราคาจริงอาจต่างตามสถานีบริการ หากไม่แสดง <a href="https://www.bangchak.co.th/th/OilPrice/" target="_blank" rel="noopener">เปิดราคาน้ำมันที่เว็บไซต์บางจาก ↗</a></p></article></section><section class="market-section"><div class="section-heading"><div><p class="eyebrow">PTT STATION</p><h2 data-t="ptt">ราคาน้ำมัน ปตท.</h2></div><span class="last-sync">บาท / ลิตร</span></div><article class="market-card"><div class="market-card-head"><span class="market-icon">◈</span><div><h3>PTT Station</h3><p class="market-muted">ตรวจสอบราคาน้ำมันจาก ปตท. โดยตรง</p></div></div><div id="pttPrices" class="market-values" aria-live="polite"></div><p class="market-note" id="pttStatus" data-t="pttWaiting">กำลังตรวจสอบข้อมูลจาก ปตท. (อัปเดตโดยระบบทุกชั่วโมง)</p><p class="market-note"><a href="https://www.pttstation.com/" target="_blank" rel="noopener noreferrer">ดูราคาน้ำมัน ปตท. ↗</a></p></article></section>
 <p class="market-note">ราคาและเวลาปรับปรุงขึ้นอยู่กับเว็บไซต์ผู้ให้บริการ โปรดตรวจสอบราคาที่สถานีบริการก่อนเติมน้ำมัน</p>
 </div>
 <nav class="bottom-nav" aria-label="เมนูหลัก">
-  <a class="nav-item " href="index.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 9-8 9 8v9h-6v-6H9v6H3z"/></svg><span data-i18n="home">หน้าหลัก</span></a>
-  <a class="nav-item active" href="market.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l6-6 4 4 8-9M16 6h5v5"/></svg><span>ราคาตลาด</span></a>
-  <a class="nav-item" href="./?action=pay" data-action="pay"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v11H4zM4 10h16"/></svg><span data-i18n="pay">จ่ายเงิน</span></a>
-  <a class="nav-item" href="./?action=request" data-action="request"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h11l-3-3m2 13H6l3 3"/></svg><span data-i18n="requestShort">คำขอ</span></a>
+  <a class="nav-item " href="./"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 9-8 9 8v9h-6v-6H9v6H3z"/></svg><span data-t="home">หน้าหลัก</span></a>
+  <a class="nav-item active" href="market.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l6-6 4 4 8-9M16 6h5v5"/></svg><span data-t="market">ราคาตลาด</span></a>
+  <a class="nav-item" href="./?action=pay" data-action="pay"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v11H4zM4 10h16"/></svg><span data-t="pay">จ่ายเงิน</span></a>
+  <a class="nav-item" href="./?action=request" data-action="request"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h11l-3-3m2 13H6l3 3"/></svg><span data-t="requests">คำขอ</span></a>
 </nav></section></main>
-</body></html>
+<script>
+(function(){
+const dict={
+th:{title:"ราคาน้ำมัน",hero:"เช็กราคาน้ำมัน",gold:"ราคาทองคำ",goldTitle:"ตรวจสอบราคาทองคำล่าสุด",goldLink:"ดูราคาทองคำจากสมาคมค้าทองคำ ↗",bangchak:"ราคาน้ำมันบางจาก",ptt:"ราคาน้ำมัน ปตท.",home:"หน้าหลัก",market:"ราคาตลาด",pay:"จ่ายเงิน",requests:"คำขอ",pttWaiting:"กำลังตรวจสอบข้อมูลจาก ปตท. (อัปเดตโดยระบบทุกชั่วโมง)",unavailable:"ยังไม่มีข้อมูลราคา ปตท. ที่ยืนยันได้ กรุณาเปิดเว็บไซต์ต้นทาง",updated:"ข้อมูลอัปเดต: "},
+en:{title:"Fuel Prices",hero:"Check fuel prices",gold:"Gold Prices",goldTitle:"Latest Thai gold prices",goldLink:"View Gold Traders Association prices ↗",bangchak:"Bangchak Fuel Prices",ptt:"PTT Fuel Prices",home:"Home",market:"Market",pay:"Pay for food",requests:"Requests",pttWaiting:"Checking PTT data (updated hourly)",unavailable:"Verified PTT prices are not available yet. Please use the official website.",updated:"Data updated: "}
+};
+let lang=localStorage.getItem("uyen-language")==="en"?"en":"th";
+function translate(){document.documentElement.lang=lang;document.querySelectorAll("[data-t]").forEach(el=>{el.textContent=dict[lang][el.dataset.t]||el.textContent});document.getElementById("langToggle").textContent=lang==="th"?"EN":"TH";if(window.pttLast)render(window.pttLast);else document.getElementById("pttStatus").textContent=dict[lang].pttWaiting}
+function render(d){const wrap=document.getElementById("pttPrices");wrap.replaceChildren();for(const p of d.prices){if(!p||typeof p.name!=="string"||!Number.isFinite(Number(p.price)))continue;const box=document.createElement("div");box.className="market-value";const name=document.createElement("span");name.textContent=p.name;const price=document.createElement("strong");price.textContent=Number(p.price).toLocaleString(lang==="th"?"th-TH":"en-US",{minimumFractionDigits:2,maximumFractionDigits:2});box.append(name,price);wrap.append(box)}const t=new Date(d.updatedAt);document.getElementById("pttStatus").textContent=wrap.children.length?dict[lang].updated+(isNaN(t.getTime())?"—":t.toLocaleString(lang==="th"?"th-TH":"en-US",{timeZone:"Asia/Bangkok",dateStyle:"medium",timeStyle:"short"})):dict[lang].unavailable}
+document.getElementById("langToggle").addEventListener("click",()=>{lang=lang==="th"?"en":"th";localStorage.setItem("uyen-language",lang);translate()});translate();
+fetch("./data/ptt-prices.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw Error("not published");return r.json()}).then(d=>{if(!Array.isArray(d.prices)||!d.prices.length)throw Error("empty");window.pttLast=d;render(d)}).catch(()=>{document.getElementById("pttStatus").textContent=dict[lang].unavailable});
+})();
+</script></body></html>
