@@ -13,6 +13,7 @@ h1,h2,p { margin-top:0; } h1 { margin-bottom:0; font-size:18px; line-height:1.2;
 .icon-button svg { width:21px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
 .content { padding:22px 18px 112px; }
 .status-chip { margin:0 0 12px; padding:9px 12px; border-radius:12px; color:#7a4a00; background:#fff2d6; font-size:12px; }
+.install-button { width:100%; margin:0 0 12px; padding:11px 14px; border:0; border-radius:12px; color:#fff; background:var(--ink); cursor:pointer; font-size:12px; font-weight:600; }
 .hero-grid { display:grid; grid-template-columns:72px 1fr; gap:16px; align-items:stretch; }
 .quick-actions { display:flex; flex-direction:column; justify-content:space-between; gap:12px; }
 .quick-action { border:0; background:transparent; padding:0; cursor:pointer; font-size:10px; font-weight:500; }
@@ -48,4 +49,5 @@ input:focus,textarea:focus { border-color:var(--accent); box-shadow:0 0 0 3px rg
 .info-steps { display:grid; gap:16px; padding:0; margin:0; list-style:none; } .info-steps li { display:grid; grid-template-columns:32px 1fr; gap:11px; align-items:center; color:#4c4c4c; font-size:12px; line-height:1.5; } .info-steps span { width:32px; height:32px; display:grid; place-items:center; border-radius:10px; color:#fff; background:var(--ink); }
 @media (max-width:520px) { body { background:var(--paper); } .app-shell { display:block; padding:0; } .wallet-app { width:100%; min-height:100vh; border-radius:0; box-shadow:none; } .bottom-nav { position:fixed; max-width:402px; margin-inline:auto; } }
 @media (prefers-reduced-motion:reduce) { * { scroll-behavior:auto!important; transition:none!important; } }
+
 
