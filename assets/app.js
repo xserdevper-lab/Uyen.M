@@ -4,7 +4,8 @@
   const money = new Intl.NumberFormat("th-TH", { style: "currency", currency: "THB", minimumFractionDigits: 2 });
   const shortDate = new Intl.DateTimeFormat("th-TH", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
   const $ = (id) => document.getElementById(id);
-  const elements = { balance: $("balance"), displayName: $("displayName"), lastSync: $("lastSync"), list: $("transactionList"), status: $("statusChip"), refresh: $("refreshButton"), requestDialog: $("requestDialog"), infoDialog: $("infoDialog"), requestForm: $("requestForm"), submitRequest: $("submitRequest"), formMessage: $("formMessage") };
+  const elements = { balance: $("balance"), displayName: $("displayName"), lastSync: $("lastSync"), list: $("transactionList"), status: $("statusChip"), installButton: $("installButton"), refresh: $("refreshButton"), requestDialog: $("requestDialog"), infoDialog: $("infoDialog"), requestForm: $("requestForm"), submitRequest: $("submitRequest"), formMessage: $("formMessage") };
+  let installPrompt = null;
 
   function showStatus(message) { elements.status.textContent = message; elements.status.hidden = !message; }
   function safe(value, fallback = "") { return String(value == null ? fallback : value).trim().slice(0, 200); }
@@ -82,6 +83,11 @@
   $("navWallet").addEventListener("click", () => document.querySelector(".balance-card").scrollIntoView({ behavior: "smooth" }));
   elements.refresh.addEventListener("click", loadWallet); elements.requestForm.addEventListener("submit", submitRequest);
   document.querySelectorAll("dialog").forEach((dialog) => dialog.addEventListener("click", (event) => { if (event.target === dialog) dialog.close(); }));
+  window.addEventListener("beforeinstallprompt", (event) => { event.preventDefault(); installPrompt = event; elements.installButton.hidden = false; });
+  elements.installButton.addEventListener("click", async () => { if (!installPrompt) return; installPrompt.prompt(); await installPrompt.userChoice; installPrompt = null; elements.installButton.hidden = true; });
+  window.addEventListener("appinstalled", () => { installPrompt = null; elements.installButton.hidden = true; });
+  if ("serviceWorker" in navigator && location.protocol.startsWith("http")) navigator.serviceWorker.register("./service-worker.js").catch(console.error);
   loadWallet(); if (config.apiUrl && Number(config.refreshMs) >= 10000) setInterval(loadWallet, Number(config.refreshMs));
 }());
+
 
