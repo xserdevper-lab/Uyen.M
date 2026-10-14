@@ -5,7 +5,7 @@
 <meta name="theme-color" content="#111111"><title>ราคาน้ำมัน | Uyen.M</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=11">
+<link rel="stylesheet" href="assets/styles.css?v=12">
 <style>
 .market-top{display:flex;align-items:center;gap:12px}.market-top .back-link{width:44px;height:44px;display:grid;place-items:center;border-radius:15px;background:#f4f3f1;text-decoration:none;color:#171717;font-size:24px}.market-top .heading{flex:1}
 .market-hero{min-height:175px}.market-hero .balance{margin:23px 0 17px;font-size:27px}.market-hero .card-foot{align-items:center}
@@ -15,7 +15,7 @@
 .market-values{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:16px}.market-value{background:#f4f3f1;border-radius:14px;padding:12px}.market-value span{display:block;color:#777;font-size:11px}.market-value strong{display:block;font-size:clamp(17px,5vw,23px);margin-top:5px;white-space:nowrap}
 .market-note{font-size:11px;line-height:1.7;color:#777;margin:12px 0 0}.market-note a{color:#d45c1d}.market-alert{border-radius:12px;background:#fff2d6;color:#7a4a00;padding:10px 12px;font-size:11px;margin-top:12px}.market-status{color:#e6e6e6;font-size:11px}
 .oil-frame{display:block;width:100%;height:875px;border:0;background:#fff}.oil-embed{overflow:hidden;border:1px solid #eee;border-radius:14px;margin-top:14px}.market-refresh{font-size:19px}
-.market-app .bottom-nav{grid-template-columns:repeat(4,minmax(0,1fr))}.market-app .nav-item{text-decoration:none}.market-app .nav-item.active{color:#fff}
+.market-app .bottom-nav{grid-template-columns:repeat(4,minmax(0,1fr))}.market-app .nav-item,.market-app .nav-item span{text-decoration:none!important}.market-app .nav-item.active{color:#fff}
 @media(max-width:370px){.market-app .nav-item{font-size:8px}.market-card{padding:14px}.market-value{padding:9px}}
 </style>
 </head>
@@ -33,7 +33,7 @@
 <section class="market-section"><div class="section-heading"><div><p class="eyebrow">FUEL PRICE</p><h2 data-t="bangchak">ราคาน้ำมันบางจาก</h2></div><span class="last-sync">บาท / ลิตร</span></div>
 <article class="market-card"><div class="market-card-head"><span class="market-icon">◈</span><div><h3>ราคาขายปลีกล่าสุด</h3><p class="market-muted">ข้อมูลจากบางจากโดยตรง</p></div></div>
 <div class="oil-embed"><iframe class="oil-frame" title="ราคาน้ำมันล่าสุดจากบางจาก" src="https://oil-price.bangchak.co.th/BcpOilPrice1/th" loading="eager" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
-<p class="market-note">ข้อมูลในกรอบแสดงโดยบางจาก ราคาจริงอาจต่างตามสถานีบริการ หากไม่แสดง <a href="https://www.bangchak.co.th/th/OilPrice/" target="_blank" rel="noopener">เปิดราคาน้ำมันที่เว็บไซต์บางจาก ↗</a></p></article></section><section class="market-section"><div class="section-heading"><div><p class="eyebrow">PTT STATION</p><h2 data-t="ptt">ราคาน้ำมัน ปตท.</h2></div><span class="last-sync">บาท / ลิตร</span></div><article class="market-card"><div class="market-card-head"><span class="market-icon">◈</span><div><h3>PTT Station</h3><p class="market-muted">ตรวจสอบราคาน้ำมันจาก ปตท. โดยตรง</p></div></div><div id="pttPrices" class="market-values" aria-live="polite"></div><p class="market-note" id="pttStatus" data-t="pttWaiting">กำลังตรวจสอบข้อมูลจาก ปตท. (อัปเดตโดยระบบทุกชั่วโมง)</p><p class="market-note"><a href="https://www.pttstation.com/" target="_blank" rel="noopener noreferrer">ดูราคาน้ำมัน ปตท. ↗</a></p></article></section>
+<p class="market-note">ข้อมูลในกรอบแสดงโดยบางจาก ราคาจริงอาจต่างตามสถานีบริการ หากไม่แสดง <a href="https://www.bangchak.co.th/th/OilPrice/" target="_blank" rel="noopener">เปิดราคาน้ำมันที่เว็บไซต์บางจาก ↗</a></p></article></section><section class="market-section"><div class="section-heading"><div><p class="eyebrow">PTT STATION</p><h2 data-t="ptt">ราคาน้ำมัน ปตท.</h2></div><span class="last-sync">บาท / ลิตร</span></div><article class="market-card"><div class="market-card-head"><span class="market-icon">◈</span><div><h3>PTT Station</h3><p class="market-muted">ตรวจสอบราคาน้ำมันจาก ปตท. โดยตรง</p></div></div><div id="pttPrices" class="market-values" aria-live="polite"></div><p class="market-note" id="pttStatus" data-t="pttWaiting">กำลังตรวจสอบข้อมูลราคาน้ำมัน ปตท.</p><p class="market-note"><a href="https://www.pttstation.com/" target="_blank" rel="noopener noreferrer">ดูราคาน้ำมัน ปตท. ↗</a></p></article></section>
 <p class="market-note">ราคาและเวลาปรับปรุงขึ้นอยู่กับเว็บไซต์ผู้ให้บริการ โปรดตรวจสอบราคาที่สถานีบริการก่อนเติมน้ำมัน</p>
 </div>
 <nav class="bottom-nav" aria-label="เมนูหลัก">
@@ -45,8 +45,8 @@
 <script>
 (function(){
 const dict={
-th:{title:"ราคาน้ำมัน",hero:"เช็กราคาน้ำมัน",gold:"ราคาทองคำ",goldTitle:"ตรวจสอบราคาทองคำล่าสุด",goldLink:"ดูราคาทองคำจากสมาคมค้าทองคำ ↗",bangchak:"ราคาน้ำมันบางจาก",ptt:"ราคาน้ำมัน ปตท.",home:"หน้าหลัก",market:"ราคาตลาด",pay:"จ่ายเงิน",requests:"คำขอ",pttWaiting:"กำลังตรวจสอบข้อมูลจาก ปตท. (อัปเดตโดยระบบทุกชั่วโมง)",unavailable:"ยังไม่มีข้อมูลราคา ปตท. ที่ยืนยันได้ กรุณาเปิดเว็บไซต์ต้นทาง",updated:"ข้อมูลอัปเดต: "},
-en:{title:"Fuel Prices",hero:"Check fuel prices",gold:"Gold Prices",goldTitle:"Latest Thai gold prices",goldLink:"View Gold Traders Association prices ↗",bangchak:"Bangchak Fuel Prices",ptt:"PTT Fuel Prices",home:"Home",market:"Market",pay:"Pay for food",requests:"Requests",pttWaiting:"Checking PTT data (updated hourly)",unavailable:"Verified PTT prices are not available yet. Please use the official website.",updated:"Data updated: "}
+th:{title:"ราคาน้ำมัน",hero:"เช็กราคาน้ำมัน",gold:"ราคาทองคำ",goldTitle:"ตรวจสอบราคาทองคำล่าสุด",goldLink:"ดูราคาทองคำจากสมาคมค้าทองคำ ↗",bangchak:"ราคาน้ำมันบางจาก",ptt:"ราคาน้ำมัน ปตท.",home:"หน้าหลัก",market:"ราคาตลาด",pay:"จ่ายเงิน",requests:"คำขอ",pttWaiting:"กำลังตรวจสอบข้อมูลจาก ปตท. (อัปเดตโดยระบบทุกชั่วโมง)",unavailable:"ยังไม่มีไฟล์ราคาจากระบบอัปเดต ปตท. กรุณาตรวจสอบการทำงานของ GitHub Actions หรือเปิดเว็บไซต์ต้นทาง",updated:"ข้อมูลอัปเดต: "},
+en:{title:"Fuel Prices",hero:"Check fuel prices",gold:"Gold Prices",goldTitle:"Latest Thai gold prices",goldLink:"View Gold Traders Association prices ↗",bangchak:"Bangchak Fuel Prices",ptt:"PTT Fuel Prices",home:"Home",market:"Market",pay:"Pay for food",requests:"Requests",pttWaiting:"Checking available PTT price data",unavailable:"The PTT data update has not published prices yet. Check GitHub Actions or visit the official website.",updated:"Data updated: "}
 };
 let lang=localStorage.getItem("uyen-language")==="en"?"en":"th";
 function translate(){document.documentElement.lang=lang;document.querySelectorAll("[data-t]").forEach(el=>{el.textContent=dict[lang][el.dataset.t]||el.textContent});document.getElementById("langToggle").textContent=lang==="th"?"EN":"TH";if(window.pttLast)render(window.pttLast);else document.getElementById("pttStatus").textContent=dict[lang].pttWaiting}
