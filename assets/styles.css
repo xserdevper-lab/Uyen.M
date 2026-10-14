@@ -66,3 +66,6 @@ input:focus,textarea:focus { border-color:var(--accent); box-shadow:0 0 0 3px rg
 @media (prefers-reduced-motion:reduce) { * { scroll-behavior:auto!important; transition:none!important; } }
 
 
+
+/* Shared footer: navigation links must never have browser-default underlines. */
+.bottom-nav .nav-item,.bottom-nav .nav-item:link,.bottom-nav .nav-item:visited,.bottom-nav .nav-item:hover,.bottom-nav .nav-item:active,.bottom-nav .nav-item span{ text-decoration:none !important; }
