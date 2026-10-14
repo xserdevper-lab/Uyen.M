@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#111111">
+  <meta name="description" content="กระเป๋าเงิน Uyen.M รับยอดจากแอปเงินรวมและติดตามรายการล่าสุด">
+  <title>Uyen.M Wallet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="wallet-app" aria-label="Uyen.M Wallet">
+      <header class="topbar">
+        <div class="profile">
+          <div class="avatar" aria-hidden="true">U</div>
+          <div><p class="eyebrow">สวัสดี,</p><h1 id="displayName">Uyen Nguyen</h1></div>
+        </div>
+        <button class="icon-button" id="refreshButton" type="button" aria-label="รีเฟรชข้อมูล">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8.1 8.1 0 0 0-15.5-2M4 4v5h5M4 13a8.1 8.1 0 0 0 15.5 2M20 20v-5h-5"/></svg>
+        </button>
+      </header>
+      <div class="content">
+        <p class="status-chip" id="statusChip" hidden></p>
+        <section class="hero-grid" aria-label="ยอดเงินและเมนู">
+          <nav class="quick-actions" aria-label="เมนูด่วน">
+            <button class="quick-action" id="requestButton" type="button"><span class="quick-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0-12 4 4m-4-4L8 7M5 11v8h14v-8"/></svg></span><span>ขอรับเงิน</span></button>
+            <button class="quick-action" id="historyButton" type="button"><span class="quick-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4v5h5M5.5 9A8 8 0 1 1 4 14m8-6v5l3 2"/></svg></span><span>ประวัติ</span></button>
+            <button class="quick-action" id="infoButton" type="button"><span class="quick-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8h.01"/></svg></span><span>วิธีใช้</span></button>
+          </nav>
+          <article class="balance-card">
+            <div class="card-glow" aria-hidden="true"></div>
+            <div class="card-head"><span class="card-label">ยอดเงินคงเหลือ</span><span class="brand-mark" aria-label="Uyen.M">U<span>M</span></span></div>
+            <p class="balance" id="balance">฿0.00</p>
+            <div class="card-foot">
+              <div><span class="muted">รับจาก</span><strong>แอปเงินรวม</strong></div>
+              <div class="secure-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V8a5 5 0 0 1 10 0v2M5 10h14v10H5z"/></svg><span>เพิ่มเงินเองไม่ได้</span></div>
+            </div>
+          </article>
+        </section>
+        <section class="activity" id="activitySection">
+          <div class="section-heading"><div><p class="eyebrow">ความเคลื่อนไหว</p><h2>รายการล่าสุด</h2></div><span class="last-sync" id="lastSync">ยังไม่ซิงก์</span></div>
+          <div class="transaction-list" id="transactionList" aria-live="polite">
+            <div class="empty-state"><div class="empty-icon">↗</div><p>ยังไม่มีรายการ</p><span>เมื่อแอปเงินรวมจ่ายเงิน รายการจะแสดงที่นี่</span></div>
+          </div>
+        </section>
+      </div>
+      <nav class="bottom-nav" aria-label="เมนูหลัก">
+        <button class="nav-item active" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 9-8 9 8v9h-6v-6H9v6H3z"/></svg><span>หน้าหลัก</span></button>
+        <button class="nav-item" id="navRequest" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h11l-3-3m2 13H6l3 3"/></svg><span>คำขอ</span></button>
+        <button class="nav-item" id="navWallet" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h15v14H3zM3 8h15m0 3h3v5h-3"/></svg><span>กระเป๋า</span></button>
+      </nav>
+    </section>
+  </main>
+  <dialog id="requestDialog">
+    <form id="requestForm" method="dialog">
+      <div class="dialog-header"><div><p class="eyebrow">ส่งไปยังแอปเงินรวม</p><h2>ขอรับเงิน</h2></div><button class="dialog-close" type="button" data-close aria-label="ปิด">×</button></div>
+      <label>จำนวนเงิน (บาท)<input id="requestAmount" name="amount" type="number" min="1" step="0.01" inputmode="decimal" placeholder="เช่น 2,000" required></label>
+      <label>เหตุผล<textarea id="requestNote" name="note" rows="3" maxlength="180" placeholder="ระบุเหตุผลสั้น ๆ" required></textarea></label>
+      <p class="form-note">การส่งคำขอไม่ทำให้ยอดเงินเพิ่ม ยอดจะเปลี่ยนเมื่อแอปเงินรวมอนุมัติและจ่ายให้เท่านั้น</p>
+      <button class="primary-button" id="submitRequest" type="submit">ส่งคำขอ</button>
+      <p class="form-message" id="formMessage" role="status"></p>
+    </form>
+  </dialog>
+  <dialog id="infoDialog">
+    <div class="dialog-header"><div><p class="eyebrow">การทำงานของกระเป๋า</p><h2>ยอดเงินมาจากไหน?</h2></div><button class="dialog-close" type="button" data-close aria-label="ปิด">×</button></div>
+    <ol class="info-steps"><li><span>1</span>ส่งคำขอรับเงินพร้อมจำนวนและเหตุผล</li><li><span>2</span>แอปเงินรวมตรวจสอบและอนุมัติ</li><li><span>3</span>เมื่อจ่ายแล้ว ยอดและรายการจะซิงก์จาก Google Sheet</li></ol>
+  </dialog>
+  <script src="config.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
+
