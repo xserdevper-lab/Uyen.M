@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css?v=5">
+  <link rel="stylesheet" href="assets/styles.css?v=6">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/icon.svg">
@@ -37,11 +37,7 @@
       <div class="content">
         <p class="status-chip" id="statusChip" hidden></p>
         <button class="install-button" id="installButton" type="button" hidden>ติดตั้งแอปบนเครื่องนี้</button>
-        <section class="hero-grid" aria-label="ยอดเงินและเมนู">
-          <nav class="quick-actions" aria-label="เมนูด่วน">
-            <button class="quick-action" id="historyButton" type="button"><span class="quick-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4v5h5M5.5 9A8 8 0 1 1 4 14m8-6v5l3 2"/></svg></span><span data-i18n="history">ประวัติ</span></button>
-            <button class="quick-action" id="infoButton" type="button"><span class="quick-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8h.01"/></svg></span><span data-i18n="help">วิธีใช้</span></button>
-          </nav>
+        <section class="hero-grid" aria-label="ยอดเงิน">
           <article class="balance-card">
             <div class="card-glow" aria-hidden="true"></div>
             <div class="card-head"><span class="card-label" data-i18n="balanceLabel">ยอดเงินคงเหลือ</span><span class="brand-mark" aria-label="Uyen.M">U<span>M</span></span></div>
@@ -52,11 +48,17 @@
             </div>
           </article>
         </section>
-        <section class="activity" id="activitySection">
-          <div class="section-heading"><div><p class="eyebrow" data-i18n="activity">ความเคลื่อนไหว</p><h2 data-i18n="latest">รายการล่าสุด</h2></div><span class="last-sync" id="lastSync">ยังไม่ซิงก์</span></div>
-          <div class="transaction-list" id="transactionList" aria-live="polite">
-            <div class="empty-state"><div class="empty-icon">↗</div><p>ยังไม่มีรายการ</p><span>เมื่อแอปเงินรวมจ่ายเงิน รายการจะแสดงที่นี่</span></div>
-          </div>
+        <section class="activity-grid">
+          <nav class="quick-actions" aria-label="เมนูด่วน">
+            <button class="quick-action" id="historyButton" type="button"><span class="quick-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4v5h5M5.5 9A8 8 0 1 1 4 14m8-6v5l3 2"/></svg></span><span data-i18n="history">ประวัติ</span></button>
+            <button class="quick-action" id="infoButton" type="button"><span class="quick-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8h.01"/></svg></span><span data-i18n="help">วิธีใช้</span></button>
+          </nav>
+          <section class="activity" id="activitySection">
+            <div class="section-heading"><div><p class="eyebrow" data-i18n="activity">ความเคลื่อนไหว</p><h2 data-i18n="latest">รายการล่าสุด</h2></div><span class="last-sync" id="lastSync">ยังไม่ซิงก์</span></div>
+            <div class="transaction-list" id="transactionList" aria-live="polite">
+              <div class="empty-state"><div class="empty-icon">↗</div><p>ยังไม่มีรายการ</p><span>เมื่อแอปเงินรวมจ่ายเงิน รายการจะแสดงที่นี่</span></div>
+            </div>
+          </section>
         </section>
       </div>
       <nav class="bottom-nav" aria-label="เมนูหลัก">
