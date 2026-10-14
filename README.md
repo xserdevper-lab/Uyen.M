@@ -2,6 +2,8 @@
 
 เว็บกระเป๋าเงินแบบ mobile-first สำหรับ GitHub Pages โดยใช้ Google Sheet เป็นฐานข้อมูล
 
+ติดตั้งเป็น PWA บน Android, Chrome และ Edge ได้จากเมนู **ติดตั้งแอป** หลังเปิดผ่าน HTTPS บน GitHub Pages
+
 ## หลักการสำคัญ
 
 - ยอดเงินคำนวณจากรายการ `credit` และ `debit` ใน `Wallet_Transactions`
@@ -43,4 +45,5 @@ apiKey=<MAIN_APP_API_KEY>
 ## GitHub Pages
 
 ตั้งค่า Pages ให้ deploy จาก branch `main` และโฟลเดอร์ `/ (root)`
+
 
