@@ -1,26 +1,64 @@
 <!doctype html>
-<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#111111"><title>ราคาตลาด | Uyen.M</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet"><style>
-:root{color-scheme:dark;font-family:Prompt,sans-serif;background:#090a0c;color:#f7f7f7}*{box-sizing:border-box}body{margin:0}.app{max-width:520px;margin:auto;min-height:100vh;padding:22px 18px 110px;background:linear-gradient(160deg,#19191b,#0a0b0e 45%)}header{display:flex;align-items:center;gap:12px;margin-bottom:24px}.back{display:grid;place-items:center;width:42px;height:42px;border:1px solid #34363b;border-radius:15px;color:white;text-decoration:none;font-size:24px}.eyebrow{font-size:12px;color:#a1a4ae;margin:0}.title{font-size:23px;font-weight:700;margin:0}.refresh{margin-left:auto;background:#22252a;color:white;border:1px solid #383b40;border-radius:13px;padding:12px;cursor:pointer}.hero{border-radius:25px;background:linear-gradient(125deg,#2c2e33,#17191c);padding:23px;border:1px solid #393b40;margin-bottom:18px}.hero .badge{display:inline-flex;align-items:center;gap:7px;border:1px solid #52555c;padding:5px 10px;border-radius:30px;font-size:11px;color:#e0e1e4}.dot{height:7px;width:7px;border-radius:50%;background:#e4bb66}.hero h2{font-size:26px;margin:17px 0 4px}.hero p{color:#b3b5ba;font-size:13px;margin:0}.section-head{display:flex;justify-content:space-between;align-items:center;margin:24px 2px 12px}.section-head h3{margin:0;font-size:18px}.section-head span{font-size:11px;color:#9ca0a9}.card{background:#191b20;border:1px solid #30333a;border-radius:19px;padding:17px;margin:10px 0}.row{display:flex;align-items:center;justify-content:space-between;gap:12px}.symbol{height:43px;width:43px;border-radius:14px;background:#30291a;display:grid;place-items:center;color:#e9c57b;font-size:21px}.symbol.oil{background:#252a32;color:#a7c2eb}.name{font-weight:600;font-size:15px}.sub{font-size:11px;color:#979ba5}.values{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}.value{background:#111317;border-radius:12px;padding:11px}.value small{display:block;color:#999da6;font-size:11px}.value strong{font-size:20px;font-weight:600}.foot{margin-top:12px;font-size:11px;color:#a6aab3;line-height:1.7}.foot a{color:#d3bd8d}.status{font-size:12px;color:#d8b87a;margin-top:14px}.nav{position:fixed;bottom:0;left:0;right:0;max-width:520px;margin:auto;background:#17191deF;border-top:1px solid #303238;display:flex;justify-content:space-around;padding:14px 12px max(14px,env(safe-area-inset-bottom))}.nav a{color:#ddd;text-decoration:none;font-size:12px}.nav .active{color:#eacb88}
-</style></head><body><main class="app"><header><a class="back" href="index.html" aria-label="กลับหน้าหลัก">‹</a><div><p class="eyebrow">UYEN.M • MARKET</p><h1 class="title">ราคาตลาดวันนี้</h1></div><button class="refresh" id="refresh" aria-label="รีเฟรช">↻</button></header>
-<section class="hero"><span class="badge"><i class="dot"></i> อัปเดตจากแหล่งข้อมูลภายนอก</span><h2>ทองคำ & น้ำมัน</h2><p>ติดตามราคาล่าสุดในหน้าเดียว · แสดงเวลาข้อมูลจริง</p><p class="status" id="status" role="status">กำลังโหลดข้อมูล...</p></section>
-<div class="section-head"><h3>✦ ราคาทองคำไทย</h3><span>บาท / บาททองคำ</span></div>
-<article class="card"><div class="row"><div class="row" style="justify-content:flex-start"><span class="symbol">◆</span><div><div class="name">ทองคำแท่ง 96.5%</div><div class="sub">ราคาประกาศในประเทศไทย</div></div></div></div><div class="values"><div class="value"><small>รับซื้อ</small><strong id="barBuy">—</strong></div><div class="value"><small>ขายออก</small><strong id="barSell">—</strong></div></div></article>
-<article class="card"><div class="row" style="justify-content:flex-start"><span class="symbol">✧</span><div><div class="name">ทองรูปพรรณ 96.5%</div><div class="sub">ราคาประกาศในประเทศไทย</div></div></div><div class="values"><div class="value"><small>รับซื้อ (ฐานภาษี)</small><strong id="ornBuy">—</strong></div><div class="value"><small>ขายออก</small><strong id="ornSell">—</strong></div></div><div class="foot" id="goldTime">รอข้อมูลล่าสุด</div><div class="foot">ที่มา: <a href="https://www.thaigoldtoday.com/" target="_blank" rel="noopener">ThaiGoldToday</a> (อ้างอิงสมาคมค้าทองคำ)</div></article>
-<div class="section-head"><h3>◉ ราคาน้ำมันบางจาก</h3><span>บาท / ลิตร</span></div>
-<article class="card"><div class="row" style="justify-content:flex-start"><span class="symbol oil">◈</span><div><div class="name">ราคาขายปลีกจากบางจาก</div><div class="sub">แสดงข้อมูลจากผู้ให้บริการโดยตรง</div></div></div>
-<div style="margin-top:15px;border-radius:14px;overflow:hidden;background:white;min-height:600px"><iframe title="ราคาน้ำมันล่าสุดจากบางจาก" src="https://oil-price.bangchak.co.th/BcpOilPrice1/th" style="display:block;width:100%;height:875px;border:0" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
-<div class="foot">ข้อมูลและเวลาอัปเดตแสดงโดยบางจากโดยตรง · <a href="https://www.bangchak.co.th/th/OilPrice/" target="_blank" rel="noopener">ตรวจสอบที่เว็บไซต์บางจาก</a></div><div class="foot">ราคาอาจแตกต่างตามจังหวัดและสถานีบริการ หากกรอบข้อมูลไม่แสดง ให้เปิดเว็บไซต์ต้นทาง</div></article>
-<div class="foot">ราคาทองตรวจสอบใหม่ทุก 60 วินาที ส่วนน้ำมันแสดงผ่านหน้าอย่างเป็นทางการของบางจาก โดยไม่มีการใช้ราคาจำลอง</div></main><nav class="nav"><a href="index.html">⌂ หน้าหลัก</a><a class="active" href="market.html">◆ ราคาตลาด</a></nav>
+<html lang="th">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111111"><title>ราคาทองและน้ำมัน | Uyen.M</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css?v=10">
+<style>
+.market-top{display:flex;align-items:center;gap:12px}.market-top .back-link{width:44px;height:44px;display:grid;place-items:center;border-radius:15px;background:#f4f3f1;text-decoration:none;color:#171717;font-size:24px}.market-top .heading{flex:1}
+.market-hero{min-height:175px}.market-hero .balance{margin:23px 0 17px;font-size:27px}.market-hero .card-foot{align-items:center}
+.market-section{margin-top:26px}.market-section .section-heading{margin-bottom:12px}.market-section .section-heading h2{font-size:17px}
+.market-card{background:#fff;border-radius:23px;padding:18px;margin-bottom:12px;box-shadow:0 8px 22px rgba(30,27,24,.035)}
+.market-card-head{display:flex;gap:12px;align-items:center}.market-icon{display:grid;place-items:center;width:43px;height:43px;border-radius:14px;background:#fff0e7;color:#d85b18;font-size:22px}.market-card h3{font-size:14px;margin:0 0 3px}.market-muted{font-size:11px;color:#7b7b7b;margin:0}
+.market-values{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:16px}.market-value{background:#f4f3f1;border-radius:14px;padding:12px}.market-value span{display:block;color:#777;font-size:11px}.market-value strong{display:block;font-size:clamp(17px,5vw,23px);margin-top:5px;white-space:nowrap}
+.market-note{font-size:11px;line-height:1.7;color:#777;margin:12px 0 0}.market-note a{color:#d45c1d}.market-alert{border-radius:12px;background:#fff2d6;color:#7a4a00;padding:10px 12px;font-size:11px;margin-top:12px}.market-status{color:#e6e6e6;font-size:11px}
+.oil-frame{display:block;width:100%;height:875px;border:0;background:#fff}.oil-embed{overflow:hidden;border:1px solid #eee;border-radius:14px;margin-top:14px}.market-refresh{font-size:19px}
+.market-app .bottom-nav{grid-template-columns:repeat(5,minmax(0,1fr))}.market-app .nav-item{text-decoration:none}.market-app .nav-item.active{color:#fff}
+@media(max-width:370px){.market-app .nav-item{font-size:8px}.market-card{padding:14px}.market-value{padding:9px}}
+</style>
+</head>
+<body><main class="app-shell"><section class="wallet-app market-app" aria-label="Uyen.M Market">
+<header class="topbar market-top">
+<a class="back-link" href="index.html" aria-label="กลับหน้าหลัก">‹</a>
+<div class="heading"><p class="eyebrow">UYEN.M • ราคาตลาด</p><h1>ทองคำและน้ำมัน</h1></div>
+<button class="icon-button market-refresh" type="button" id="refreshMarket" aria-label="อัปเดตราคา">↻</button>
+</header>
+<div class="content">
+<article class="balance-card market-hero"><div class="card-glow" aria-hidden="true"></div>
+<div class="card-head"><span class="card-label">MARKET WATCH</span><span class="brand-mark">U<span>M</span></span></div>
+<p class="balance">ราคาตลาดวันนี้</p><div class="card-foot"><span class="market-status" id="marketStatus" role="status">กำลังโหลดข้อมูลล่าสุด...</span><span class="secure-badge">● LIVE DATA</span></div></article>
+<section class="market-section"><div class="section-heading"><div><p class="eyebrow">THAI GOLD</p><h2>ราคาทองคำไทย</h2></div><span class="last-sync">บาท / บาททองคำ</span></div>
+<article class="market-card"><div class="market-card-head"><span class="market-icon">◆</span><div><h3>ทองคำแท่ง 96.5%</h3><p class="market-muted">ราคาประกาศล่าสุด</p></div></div>
+<div class="market-values"><div class="market-value"><span>รับซื้อ</span><strong id="barBuy">—</strong></div><div class="market-value"><span>ขายออก</span><strong id="barSell">—</strong></div></div></article>
+<article class="market-card"><div class="market-card-head"><span class="market-icon">✧</span><div><h3>ทองรูปพรรณ 96.5%</h3><p class="market-muted">ราคาประกาศล่าสุด</p></div></div>
+<div class="market-values"><div class="market-value"><span>รับซื้อ</span><strong id="ornBuy">—</strong></div><div class="market-value"><span>ขายออก</span><strong id="ornSell">—</strong></div></div>
+<p class="market-note" id="goldTime">กำลังตรวจสอบข้อมูล...</p>
+<div class="market-alert" id="goldError" hidden>ไม่สามารถดึงข้อมูลทองคำผ่านเบราว์เซอร์ได้ กรุณาตรวจสอบราคาจาก <a href="https://www.thaigoldtoday.com/" target="_blank" rel="noopener">เว็บไซต์ต้นทาง</a></div>
+<p class="market-note">แหล่งข้อมูล: <a href="https://www.thaigoldtoday.com/" target="_blank" rel="noopener">ThaiGoldToday</a> อ้างอิงราคาสมาคมค้าทองคำ</p></article></section>
+<section class="market-section"><div class="section-heading"><div><p class="eyebrow">FUEL PRICE</p><h2>ราคาน้ำมันบางจาก</h2></div><span class="last-sync">บาท / ลิตร</span></div>
+<article class="market-card"><div class="market-card-head"><span class="market-icon">◈</span><div><h3>ราคาขายปลีกล่าสุด</h3><p class="market-muted">ข้อมูลจากบางจากโดยตรง</p></div></div>
+<div class="oil-embed"><iframe class="oil-frame" title="ราคาน้ำมันล่าสุดจากบางจาก" src="https://oil-price.bangchak.co.th/BcpOilPrice1/th" loading="eager" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+<p class="market-note">ข้อมูลในกรอบแสดงโดยบางจาก ราคาจริงอาจต่างตามสถานีบริการ หากไม่แสดง <a href="https://www.bangchak.co.th/th/OilPrice/" target="_blank" rel="noopener">เปิดราคาน้ำมันที่เว็บไซต์บางจาก ↗</a></p></article></section>
+<p class="market-note">ตรวจสอบราคาทองใหม่ทุก 60 วินาที · ราคาขึ้นอยู่กับเวลาเผยแพร่ของแหล่งข้อมูล ไม่ใช่ราคาซื้อขายที่รับประกัน</p>
+</div>
+<nav class="bottom-nav" aria-label="เมนูหลัก">
+<a class="nav-item" href="index.html"><svg viewBox="0 0 24 24"><path d="m3 11 9-8 9 8v9h-6v-6H9v6H3z"/></svg><span>หน้าหลัก</span></a>
+<a class="nav-item active" href="market.html"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-9M16 6h5v5"/></svg><span>ราคาตลาด</span></a>
+</nav></section></main>
 <script>
-const GOLD_URL='https://www.thaigoldtoday.com/api/gold-price';
-// Optional: Set window.UYEN_MARKET_OIL_API_URL in market-config.js to a trusted CORS-enabled JSON endpoint.
-// Expected JSON: {updatedAt:"ISO date",prices:[{name:"Gasohol 95",price:35.25},...]}
-const format=n=>Number.isFinite(Number(n))&&n!==null&&n!==undefined&&n!==''?Number(n).toLocaleString('th-TH',{minimumFractionDigits:2,maximumFractionDigits:2}):'—';
-const set=(id,value)=>document.getElementById(id).textContent=value;
-const time=t=>{const d=new Date(t);return Number.isNaN(d.getTime())?'ไม่ระบุเวลา':d.toLocaleString('th-TH',{dateStyle:'medium',timeStyle:'short',timeZone:'Asia/Bangkok'})};
-async function fetchJSON(url){const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),12000);try{const r=await fetch(url,{cache:'no-store',signal:controller.signal});if(!r.ok)throw Error('HTTP '+r.status);return await r.json()}finally{clearTimeout(timer)}}
-async function loadGold(){try{const d=await fetchJSON(GOLD_URL);const c=d.current;if(!c||!Number.isFinite(Number(c.sellBar)))throw Error('ข้อมูลไม่ถูกต้อง');set('barBuy',format(c.buyBar));set('barSell',format(c.sellBar));set('ornBuy',format(c.buyOrnament));set('ornSell',format(c.sellOrnament));set('goldTime','ประกาศล่าสุด: '+time(c.updatedAt));return true}catch(e){for(const id of ['barBuy','barSell','ornBuy','ornSell'])set(id,'—');set('goldTime','ไม่สามารถดึงราคาทองได้: '+e.message);return false}}
-async function loadOil(){const url=window.UYEN_MARKET_OIL_API_URL;if(!url)return false;try{const d=await fetchJSON(url);if(!Array.isArray(d.prices)||!d.prices.length)throw Error('รูปแบบข้อมูลไม่ถูกต้อง');const list=document.getElementById('oilList');list.replaceChildren();for(const p of d.prices){if(typeof p.name!=='string'||!Number.isFinite(Number(p.price)))continue;const row=document.createElement('div');row.className='row value';row.style.marginTop='9px';const label=document.createElement('span');label.textContent=p.name;const price=document.createElement('strong');price.textContent=format(p.price);row.append(label,price);list.append(row)}if(!list.children.length)throw Error('ไม่พบราคาที่ใช้ได้');set('oilStatus','อัปเดตล่าสุด: '+time(d.updatedAt));return true}catch(e){document.getElementById('oilList').replaceChildren();set('oilStatus','ดึงราคาน้ำมันไม่สำเร็จ: '+e.message);return false}}
-let busy=false;async function load(){if(busy)return;busy=true;set('status','กำลังตรวจสอบราคาล่าสุด...');const gold=await loadGold();set('status',gold?'ราคาทองอัปเดตแล้ว · น้ำมันจากบางจาก':'ไม่สามารถโหลดราคาทองได้ · น้ำมันจากบางจาก');busy=false}
-document.getElementById('refresh').addEventListener('click',load);load();setInterval(()=>{if(!document.hidden)load()},60000);
-</script><script src="market-config.js"></script></body></html>
+(function(){'use strict';
+const $=id=>document.getElementById(id);
+const fmt=v=>v!==null&&v!==undefined&&v!==''&&Number.isFinite(Number(v))?Number(v).toLocaleString('th-TH',{minimumFractionDigits:2,maximumFractionDigits:2}):'—';
+const set=(id,v)=>$(id).textContent=v;
+let loading=false;
+async function update(){if(loading)return;loading=true;set('marketStatus','กำลังตรวจสอบราคาทอง...');const ctl=new AbortController(),timeout=setTimeout(()=>ctl.abort(),12000);
+try{const r=await fetch('https://www.thaigoldtoday.com/api/gold-price',{cache:'no-store',signal:ctl.signal});if(!r.ok)throw Error('HTTP '+r.status);const d=await r.json();const g=d&&d.current;if(!g||!Number.isFinite(Number(g.sellBar))||!Number.isFinite(Number(g.buyBar)))throw Error('invalid data');
+set('barBuy',fmt(g.buyBar));set('barSell',fmt(g.sellBar));set('ornBuy',fmt(g.buyOrnament));set('ornSell',fmt(g.sellOrnament));
+const stamp=new Date(g.updatedAt);set('goldTime','อัปเดตล่าสุด: '+(Number.isNaN(stamp.getTime())?'ไม่ระบุเวลา':stamp.toLocaleString('th-TH',{timeZone:'Asia/Bangkok',dateStyle:'medium',timeStyle:'short'})));
+$('goldError').hidden=true;set('marketStatus','ราคาทองอัปเดตแล้ว • น้ำมันจากบางจาก');
+}catch(e){['barBuy','barSell','ornBuy','ornSell'].forEach(id=>set(id,'—'));set('goldTime','ยังไม่สามารถยืนยันราคาล่าสุดได้');$('goldError').hidden=false;set('marketStatus','ราคาทองไม่พร้อม • ตรวจสอบต้นทาง');}finally{clearTimeout(timeout);loading=false;}}
+$('refreshMarket').addEventListener('click',update);update();setInterval(()=>{if(!document.hidden)update()},60000);
+})();
+</script></body></html>
