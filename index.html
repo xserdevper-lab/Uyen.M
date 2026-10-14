@@ -92,6 +92,8 @@
   </dialog>
   <dialog id="settingsDialog">
     <div class="dialog-header"><div><p class="eyebrow">Uyen.M</p><h2 data-i18n="settings">ตั้งค่า</h2></div><button class="dialog-close" type="button" data-close aria-label="ปิด">×</button></div>
+    <label><span data-i18n="profileName">ชื่อที่แสดง</span><input id="profileName" type="text" maxlength="50" autocomplete="name" data-i18n-placeholder="namePlaceholder" placeholder="เช่น Uyen Nguyen"></label>
+    <button class="secondary-button" id="saveName" type="button" data-i18n="saveName">บันทึกชื่อ</button>
     <div class="settings-profile">
       <div class="avatar avatar-preview"><span>U</span><img id="settingsPreview" alt="" hidden></div>
       <div><strong data-i18n="profilePhoto">รูปโปรไฟล์</strong><p data-i18n="profileHint">ไฟล์รูปจะเก็บในเครื่องนี้เท่านั้น</p></div>
@@ -106,7 +108,7 @@
     <ol class="info-steps"><li><span>1</span>ส่งคำขอรับเงินพร้อมจำนวนและเหตุผล</li><li><span>2</span>แอปเงินรวมตรวจสอบและอนุมัติ</li><li><span>3</span>เมื่อจ่ายแล้ว ยอดและรายการจะซิงก์จาก Google Sheet</li></ol>
   </dialog>
   <script src="config.js?v=4"></script>
-  <script src="assets/app.js?v=4"></script>
+  <script src="assets/app.js?v=5"></script>
 </body>
 </html>
 
