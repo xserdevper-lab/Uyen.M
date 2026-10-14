@@ -20,6 +20,7 @@ function doPost(e) {
   try {
     const body = e.parameter || {}; const action = String(body.action || '');
     if (action === 'request') return json_({ ok: true, data: createRequest_(body) });
+    if (action === 'spend') return json_({ ok: true, data: spendFromWallet_(body) });
     if (action === 'credit') return json_({ ok: true, data: creditFromMainApp_(body) });
     if (action === 'debit') return json_({ ok: true, data: debitFromMainApp_(body) });
     throw new Error('Unsupported action');
@@ -35,7 +36,7 @@ function getWallet_(walletId) {
     .map((row) => ({ id: String(row.transaction_id), type: String(row.type).toLowerCase(), amount: Number(row.amount || 0), note: String(row.note || ''), source: String(row.source || ''), createdAt: iso_(row.created_at) }))
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   const balance = transactions.reduce((sum, item) => sum + (item.type === 'credit' ? item.amount : -item.amount), 0);
-  return { walletId, displayName: String(account.display_name || walletId), balance: Math.max(0, balance), updatedAt: new Date().toISOString(), transactions: transactions.slice(0, 20) };
+  return { walletId, displayName: String(account.display_name || walletId), balance: Math.max(0, balance), updatedAt: new Date().toISOString(), transactions: transactions.slice(0, 50) };
 }
 
 function createRequest_(body) {
@@ -48,12 +49,21 @@ function createRequest_(body) {
 function creditFromMainApp_(body) { verifyMainAppKey_(body.apiKey); return postTransaction_(body, 'credit'); }
 function debitFromMainApp_(body) { verifyMainAppKey_(body.apiKey); const amount = positiveAmount_(body.amount); if (amount > getWallet_(required_(body.walletId, 'walletId')).balance) throw new Error('Insufficient balance'); return postTransaction_(Object.assign({}, body, { amount }), 'debit'); }
 
+function spendFromWallet_(body) {
+  const lock = LockService.getScriptLock(); lock.waitLock(10000);
+  try {
+    const walletId = required_(body.walletId, 'walletId'); const amount = positiveAmount_(body.amount); const note = required_(body.note, 'note').slice(0, 180);
+    if (amount > getWallet_(walletId).balance) throw new Error('Insufficient balance');
+    return postTransaction_({ walletId, amount, note, externalId: 'UYEN-' + Utilities.getUuid(), source: 'Uyen.M' }, 'debit');
+  } finally { lock.releaseLock(); }
+}
+
 function postTransaction_(body, type) {
   const walletId = required_(body.walletId, 'walletId'); const externalId = required_(body.externalId, 'externalId'); const amount = positiveAmount_(body.amount);
   const ss = SpreadsheetApp.openById(WALLET_SHEET_ID); assertActiveWallet_(ss, walletId); const sheet = ss.getSheetByName(WALLET_SHEETS.transactions);
   if (rowsAsObjects_(sheet).some((row) => String(row.external_id) === externalId)) throw new Error('Duplicate externalId');
   const transactionId = Utilities.getUuid();
-  sheet.appendRow([transactionId, externalId, walletId, type, amount, String(body.note || (type === 'credit' ? 'รับเงินจากแอปเงินรวม' : 'จ่ายเงิน')).slice(0, 180), 'แอปเงินรวม', 'posted', new Date()]);
+  sheet.appendRow([transactionId, externalId, walletId, type, amount, String(body.note || (type === 'credit' ? 'รับเงินจากแอปเงินรวม' : 'จ่ายเงิน')).slice(0, 180), String(body.source || 'แอปเงินรวม').slice(0, 80), 'posted', new Date()]);
   return { transactionId, externalId, type, amount };
 }
 
@@ -65,4 +75,5 @@ function positiveAmount_(value) { const amount = Number(value); if (!Number.isFi
 function required_(value, label) { const text = String(value == null ? '' : value).trim(); if (!text) throw new Error(label + ' is required'); return text; }
 function iso_(value) { const date = value instanceof Date ? value : new Date(value); return Number.isNaN(date.getTime()) ? new Date(0).toISOString() : date.toISOString(); }
 function json_(payload) { return ContentService.createTextOutput(JSON.stringify(payload)).setMimeType(ContentService.MimeType.JSON); }
+
 
