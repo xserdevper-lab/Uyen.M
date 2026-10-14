@@ -1,0 +1,16 @@
+{
+  "name": "Uyen.M Wallet",
+  "short_name": "Uyen.M",
+  "description": "กระเป๋าเงินที่รับยอดจากแอปเงินรวม",
+  "lang": "th",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f4f3f1",
+  "theme_color": "#111111",
+  "icons": [
+    { "src": "assets/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
+
