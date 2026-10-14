@@ -1,5 +1,5 @@
-const CACHE_NAME = "uyen-wallet-v4";
-const APP_SHELL = ["./", "./index.html", "./config.js?v=4", "./assets/styles.css", "./assets/app.js?v=4", "./assets/icon.svg", "./manifest.webmanifest"];
+const CACHE_NAME = "uyen-wallet-v5";
+const APP_SHELL = ["./", "./index.html", "./config.js?v=4", "./assets/styles.css?v=5", "./assets/app.js?v=4", "./assets/icon.svg", "./manifest.webmanifest"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL)).then(() => self.skipWaiting()));
