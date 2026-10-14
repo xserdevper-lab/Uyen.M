@@ -1,93 +1,56 @@
 (function () {
   "use strict";
   const config = Object.assign({ apiUrl: "", walletId: "uyen", refreshMs: 30000 }, window.WALLET_CONFIG || {});
-  const money = new Intl.NumberFormat("th-TH", { style: "currency", currency: "THB", minimumFractionDigits: 2 });
-  const shortDate = new Intl.DateTimeFormat("th-TH", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
   const $ = (id) => document.getElementById(id);
-  const elements = { balance: $("balance"), displayName: $("displayName"), lastSync: $("lastSync"), list: $("transactionList"), status: $("statusChip"), installButton: $("installButton"), refresh: $("refreshButton"), requestDialog: $("requestDialog"), infoDialog: $("infoDialog"), requestForm: $("requestForm"), submitRequest: $("submitRequest"), formMessage: $("formMessage") };
+  const translations = {
+    th: { hello:"สวัสดี,", pay:"จ่ายเงิน", request:"ขอรับเงิน", requestShort:"คำขอ", history:"ประวัติ", help:"วิธีใช้", balanceLabel:"ยอดเงินคงเหลือ", receivedFrom:"รับจาก", mainApp:"แอปเงินรวม", noSelfTopup:"เพิ่มเงินเองไม่ได้", activity:"ความเคลื่อนไหว", latest:"รายการล่าสุด", home:"หน้าหลัก", settings:"ตั้งค่า", sendViaMain:"ส่งคำขอไปยังแอปเงินรวม", recipient:"ผู้รับ", recipientPlaceholder:"ชื่อหรือรายละเอียดผู้รับ", amount:"จำนวนเงิน (บาท)", note:"หมายเหตุ", optional:"ไม่บังคับ", paymentNotice:"คำขอนี้จะถูกส่งให้แอปเงินรวมอนุมัติ ยอดจะลดเมื่อแอปหลักยืนยันการจ่ายเท่านั้น", sendPaymentRequest:"ส่งคำขอจ่ายเงิน", profilePhoto:"รูปโปรไฟล์", profileHint:"ไฟล์รูปจะเก็บในเครื่องนี้เท่านั้น", choosePhoto:"เลือกรูปภาพ", removePhoto:"ลบรูปโปรไฟล์", language:"ภาษา", sync:"ซิงก์", empty:"ยังไม่มีรายการ", emptyHint:"เมื่อแอปเงินรวมจ่ายเงิน รายการจะแสดงที่นี่", paymentSent:"ส่งคำขอจ่ายเงินแล้ว รอแอปหลักอนุมัติ", sending:"กำลังส่ง...", connectFirst:"กรุณาเชื่อม Apps Script ก่อนส่งคำขอ", requestFailed:"ส่งคำขอไม่สำเร็จ", photoSaved:"บันทึกรูปโปรไฟล์แล้ว", photoRemoved:"ลบรูปโปรไฟล์แล้ว", photoTooLarge:"กรุณาเลือกรูปขนาดไม่เกิน 1.5 MB", install:"ติดตั้งแอปบนเครื่องนี้" },
+    en: { hello:"Hello,", pay:"Pay", request:"Request money", requestShort:"Requests", history:"History", help:"How it works", balanceLabel:"Available balance", receivedFrom:"Received from", mainApp:"Main money app", noSelfTopup:"Self top-up disabled", activity:"Activity", latest:"Recent transactions", home:"Home", settings:"Settings", sendViaMain:"Send request to the main app", recipient:"Recipient", recipientPlaceholder:"Recipient name or details", amount:"Amount (THB)", note:"Note", optional:"Optional", paymentNotice:"This request goes to the main app for approval. Your balance changes only after the main app confirms payment.", sendPaymentRequest:"Send payment request", profilePhoto:"Profile photo", profileHint:"The photo is stored only on this device", choosePhoto:"Choose image", removePhoto:"Remove profile photo", language:"Language", sync:"Synced", empty:"No transactions yet", emptyHint:"Payments from the main app will appear here", paymentSent:"Payment request sent. Waiting for main app approval.", sending:"Sending...", connectFirst:"Connect Apps Script before sending a request", requestFailed:"Could not send request", photoSaved:"Profile photo saved", photoRemoved:"Profile photo removed", photoTooLarge:"Please choose an image under 1.5 MB", install:"Install this app" }
+  };
+  let language = localStorage.getItem("uyen-language") || "th";
+  let money;
+  let shortDate;
+  let lastWallet = null;
   let installPrompt = null;
-
-  function showStatus(message) { elements.status.textContent = message; elements.status.hidden = !message; }
+  const elements = { balance:$("balance"), displayName:$("displayName"), lastSync:$("lastSync"), list:$("transactionList"), status:$("statusChip"), installButton:$("installButton"), refresh:$("refreshButton"), requestDialog:$("requestDialog"), paymentDialog:$("paymentDialog"), settingsDialog:$("settingsDialog"), infoDialog:$("infoDialog"), requestForm:$("requestForm"), paymentForm:$("paymentForm"), submitRequest:$("submitRequest"), submitPayment:$("submitPayment"), formMessage:$("formMessage"), paymentMessage:$("paymentMessage"), settingsMessage:$("settingsMessage"), profileImage:$("profileImage"), settingsPreview:$("settingsPreview"), languageSelect:$("languageSelect") };
+  function t(key) { return (translations[language] && translations[language][key]) || translations.th[key] || key; }
   function safe(value, fallback = "") { return String(value == null ? fallback : value).trim().slice(0, 200); }
-
+  function showStatus(message) { elements.status.textContent = message; elements.status.hidden = !message; }
+  function refreshFormatters() { const locale = language === "en" ? "en-GB" : "th-TH"; money = new Intl.NumberFormat(locale, { style:"currency", currency:"THB", minimumFractionDigits:2 }); shortDate = new Intl.DateTimeFormat(locale, { day:"numeric", month:"short", hour:"2-digit", minute:"2-digit" }); }
+  function applyLanguage(nextLanguage) {
+    language = nextLanguage === "en" ? "en" : "th"; localStorage.setItem("uyen-language", language); document.documentElement.lang = language; elements.languageSelect.value = language; refreshFormatters();
+    document.querySelectorAll("[data-i18n]").forEach((node) => { node.textContent = t(node.dataset.i18n); });
+    document.querySelectorAll("[data-i18n-placeholder]").forEach((node) => { node.placeholder = t(node.dataset.i18nPlaceholder); });
+    elements.installButton.textContent = t("install"); if (lastWallet) renderWallet(lastWallet);
+  }
   function renderWallet(data) {
-    elements.displayName.textContent = safe(data.displayName, "Uyen Nguyen");
-    elements.balance.textContent = money.format(Number(data.balance || 0));
-    elements.lastSync.textContent = `ซิงก์ ${shortDate.format(data.updatedAt ? new Date(data.updatedAt) : new Date())}`;
+    lastWallet = data; elements.displayName.textContent = safe(data.displayName, "Uyen Nguyen"); elements.balance.textContent = money.format(Number(data.balance || 0)); elements.lastSync.textContent = `${t("sync")} ${shortDate.format(data.updatedAt ? new Date(data.updatedAt) : new Date())}`;
     const transactions = Array.isArray(data.transactions) ? data.transactions : [];
-    if (!transactions.length) {
-      elements.list.innerHTML = '<div class="empty-state"><div class="empty-icon">↗</div><p>ยังไม่มีรายการ</p><span>เมื่อแอปเงินรวมจ่ายเงิน รายการจะแสดงที่นี่</span></div>';
-      return;
-    }
+    if (!transactions.length) { elements.list.innerHTML = `<div class="empty-state"><div class="empty-icon">↗</div><p>${t("empty")}</p><span>${t("emptyHint")}</span></div>`; return; }
     elements.list.replaceChildren(...transactions.slice(0, 8).map(renderTransaction));
   }
-
   function renderTransaction(item) {
-    const isCredit = String(item.type || "credit").toLowerCase() === "credit";
-    const row = document.createElement("article"); row.className = "transaction";
+    const isCredit = String(item.type || "credit").toLowerCase() === "credit"; const row = document.createElement("article"); row.className = "transaction";
     const icon = document.createElement("div"); icon.className = "transaction-icon"; icon.textContent = isCredit ? "↙" : "↗";
-    const info = document.createElement("div");
-    const title = document.createElement("p"); title.className = "transaction-title"; title.textContent = safe(item.note, isCredit ? "รับเงินจากแอปเงินรวม" : "รายการจ่าย");
-    const meta = document.createElement("p"); meta.className = "transaction-meta"; meta.textContent = safe(item.source, isCredit ? "แอปเงินรวม" : "Uyen.M");
-    info.append(title, meta);
-    const amount = document.createElement("div"); amount.className = `transaction-amount ${isCredit ? "credit" : "debit"}`; amount.textContent = `${isCredit ? "+" : "−"} ${money.format(Math.abs(Number(item.amount || 0)))}`;
-    const date = document.createElement("span"); date.className = "transaction-date"; date.textContent = item.createdAt ? shortDate.format(new Date(item.createdAt)) : "";
-    amount.append(date); row.append(icon, info, amount); return row;
+    const info = document.createElement("div"); const title = document.createElement("p"); title.className = "transaction-title"; title.textContent = safe(item.note, isCredit ? t("mainApp") : t("pay")); const meta = document.createElement("p"); meta.className = "transaction-meta"; meta.textContent = safe(item.source, isCredit ? t("mainApp") : "Uyen.M"); info.append(title, meta);
+    const amount = document.createElement("div"); amount.className = `transaction-amount ${isCredit ? "credit" : "debit"}`; amount.textContent = `${isCredit ? "+" : "−"} ${money.format(Math.abs(Number(item.amount || 0)))}`; const date = document.createElement("span"); date.className = "transaction-date"; date.textContent = item.createdAt ? shortDate.format(new Date(item.createdAt)) : ""; amount.append(date); row.append(icon, info, amount); return row;
   }
-
-  async function apiGet(params) {
-    const url = new URL(config.apiUrl);
-    Object.entries(params).forEach(([key, value]) => url.searchParams.set(key, value));
-    const response = await fetch(url, { redirect: "follow", cache: "no-store" });
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    const payload = await response.json();
-    if (!payload.ok) throw new Error(payload.error || "API error");
-    return payload.data;
-  }
-
-  async function loadWallet() {
-    if (!config.apiUrl) {
-      showStatus("ยังไม่ได้เชื่อม Google Sheet — เปิด ?demo=1 เพื่อดูตัวอย่าง หรือใส่ Apps Script URL ใน config.js");
-      if (new URLSearchParams(location.search).get("demo") === "1") {
-        showStatus("โหมดตัวอย่าง — ยอดจริงจะอ่านจาก Google Sheet หลังเชื่อม Apps Script");
-        renderWallet({ displayName: "Uyen Nguyen", balance: 2000, updatedAt: new Date().toISOString(), transactions: [{ type: "credit", amount: 2000, note: "รับเงินค่าประจำสัปดาห์", source: "แอปเงินรวม", createdAt: new Date().toISOString() }] });
-      }
-      return;
-    }
-    elements.refresh.disabled = true;
-    try { showStatus(""); renderWallet(await apiGet({ action: "wallet", walletId: config.walletId })); }
-    catch (error) { console.error(error); showStatus("ซิงก์ Google Sheet ไม่สำเร็จ กรุณาตรวจ URL และสิทธิ์ของ Apps Script"); }
-    finally { elements.refresh.disabled = false; }
-  }
-
-  async function submitRequest(event) {
-    event.preventDefault(); elements.formMessage.className = "form-message";
-    if (!config.apiUrl) { elements.formMessage.textContent = "กรุณาเชื่อม Apps Script ก่อนส่งคำขอ"; elements.formMessage.classList.add("error"); return; }
-    elements.submitRequest.disabled = true; elements.formMessage.textContent = "กำลังส่ง...";
-    try {
-      const body = new URLSearchParams({ action: "request", walletId: config.walletId, amount: $("requestAmount").value, note: $("requestNote").value });
-      const response = await fetch(config.apiUrl, { method: "POST", body, redirect: "follow" });
-      const payload = await response.json();
-      if (!payload.ok) throw new Error(payload.error || "ส่งคำขอไม่สำเร็จ");
-      elements.requestForm.reset(); elements.formMessage.textContent = "ส่งคำขอแล้ว ยอดเงินจะยังไม่เปลี่ยนจนกว่าแอปหลักจะจ่ายให้"; elements.formMessage.classList.add("success");
-    } catch (error) { elements.formMessage.textContent = safe(error.message, "ส่งคำขอไม่สำเร็จ"); elements.formMessage.classList.add("error"); }
-    finally { elements.submitRequest.disabled = false; }
-  }
-
+  async function apiGet(params) { const url = new URL(config.apiUrl); Object.entries(params).forEach(([key, value]) => url.searchParams.set(key, value)); const response = await fetch(url, { redirect:"follow", cache:"no-store" }); if (!response.ok) throw new Error(`HTTP ${response.status}`); const payload = await response.json(); if (!payload.ok) throw new Error(payload.error || "API error"); return payload.data; }
+  async function postRequest(amount, note) { if (!config.apiUrl) throw new Error(t("connectFirst")); const body = new URLSearchParams({ action:"request", walletId:config.walletId, amount, note }); const response = await fetch(config.apiUrl, { method:"POST", body, redirect:"follow" }); const payload = await response.json(); if (!payload.ok) throw new Error(payload.error || t("requestFailed")); return payload.data; }
+  async function loadWallet() { if (!config.apiUrl) { showStatus(language === "en" ? "Google Sheet is not connected" : "ยังไม่ได้เชื่อม Google Sheet"); return; } elements.refresh.disabled = true; try { showStatus(""); renderWallet(await apiGet({ action:"wallet", walletId:config.walletId })); } catch (error) { console.error(error); showStatus(language === "en" ? "Could not sync Google Sheet" : "ซิงก์ Google Sheet ไม่สำเร็จ"); } finally { elements.refresh.disabled = false; } }
+  async function submitRequest(event) { event.preventDefault(); elements.formMessage.className = "form-message"; elements.submitRequest.disabled = true; elements.formMessage.textContent = t("sending"); try { await postRequest($("requestAmount").value, $("requestNote").value); elements.requestForm.reset(); elements.formMessage.textContent = language === "en" ? "Request sent. The balance will change only after the main app pays." : "ส่งคำขอแล้ว ยอดเงินจะเปลี่ยนเมื่อแอปหลักจ่ายให้"; elements.formMessage.classList.add("success"); } catch (error) { elements.formMessage.textContent = safe(error.message, t("requestFailed")); elements.formMessage.classList.add("error"); } finally { elements.submitRequest.disabled = false; } }
+  async function submitPayment(event) { event.preventDefault(); elements.paymentMessage.className = "form-message"; elements.submitPayment.disabled = true; elements.paymentMessage.textContent = t("sending"); const recipient = safe($("paymentRecipient").value); const note = safe($("paymentNote").value); const paymentNote = `[PAYMENT REQUEST] ${recipient}${note ? ` — ${note}` : ""}`; try { await postRequest($("paymentAmount").value, paymentNote); elements.paymentForm.reset(); elements.paymentMessage.textContent = t("paymentSent"); elements.paymentMessage.classList.add("success"); } catch (error) { elements.paymentMessage.textContent = safe(error.message, t("requestFailed")); elements.paymentMessage.classList.add("error"); } finally { elements.submitPayment.disabled = false; } }
   function openDialog(dialog) { if (!dialog.open) dialog.showModal(); }
+  function applyProfileImage(dataUrl) { [elements.profileImage, elements.settingsPreview].forEach((image) => { image.src = dataUrl || ""; image.hidden = !dataUrl; }); }
+  function loadSettings() { applyProfileImage(localStorage.getItem("uyen-profile-photo") || ""); applyLanguage(language); }
+  $("profileInput").addEventListener("change", () => { const file = $("profileInput").files && $("profileInput").files[0]; if (!file) return; if (file.size > 1572864) { elements.settingsMessage.textContent = t("photoTooLarge"); elements.settingsMessage.className = "form-message error"; return; } const reader = new FileReader(); reader.onload = () => { localStorage.setItem("uyen-profile-photo", reader.result); applyProfileImage(reader.result); elements.settingsMessage.textContent = t("photoSaved"); elements.settingsMessage.className = "form-message success"; }; reader.readAsDataURL(file); });
+  $("removePhoto").addEventListener("click", () => { localStorage.removeItem("uyen-profile-photo"); $("profileInput").value = ""; applyProfileImage(""); elements.settingsMessage.textContent = t("photoRemoved"); elements.settingsMessage.className = "form-message success"; });
+  elements.languageSelect.addEventListener("change", () => applyLanguage(elements.languageSelect.value));
   document.querySelectorAll("[data-close]").forEach((button) => button.addEventListener("click", () => button.closest("dialog").close()));
-  $("requestButton").addEventListener("click", () => openDialog(elements.requestDialog));
-  $("navRequest").addEventListener("click", () => openDialog(elements.requestDialog));
-  $("infoButton").addEventListener("click", () => openDialog(elements.infoDialog));
-  $("historyButton").addEventListener("click", () => $("activitySection").scrollIntoView({ behavior: "smooth" }));
-  $("navWallet").addEventListener("click", () => document.querySelector(".balance-card").scrollIntoView({ behavior: "smooth" }));
-  elements.refresh.addEventListener("click", loadWallet); elements.requestForm.addEventListener("submit", submitRequest);
+  $("payButton").addEventListener("click", () => openDialog(elements.paymentDialog)); $("navPay").addEventListener("click", () => openDialog(elements.paymentDialog)); $("requestButton").addEventListener("click", () => openDialog(elements.requestDialog)); $("navRequest").addEventListener("click", () => openDialog(elements.requestDialog)); $("settingsButton").addEventListener("click", () => openDialog(elements.settingsDialog)); $("navSettings").addEventListener("click", () => openDialog(elements.settingsDialog)); $("infoButton").addEventListener("click", () => openDialog(elements.infoDialog)); $("historyButton").addEventListener("click", () => $("activitySection").scrollIntoView({ behavior:"smooth" }));
+  elements.refresh.addEventListener("click", loadWallet); elements.requestForm.addEventListener("submit", submitRequest); elements.paymentForm.addEventListener("submit", submitPayment);
   document.querySelectorAll("dialog").forEach((dialog) => dialog.addEventListener("click", (event) => { if (event.target === dialog) dialog.close(); }));
-  window.addEventListener("beforeinstallprompt", (event) => { event.preventDefault(); installPrompt = event; elements.installButton.hidden = false; });
-  elements.installButton.addEventListener("click", async () => { if (!installPrompt) return; installPrompt.prompt(); await installPrompt.userChoice; installPrompt = null; elements.installButton.hidden = true; });
-  window.addEventListener("appinstalled", () => { installPrompt = null; elements.installButton.hidden = true; });
+  window.addEventListener("beforeinstallprompt", (event) => { event.preventDefault(); installPrompt = event; elements.installButton.hidden = false; }); elements.installButton.addEventListener("click", async () => { if (!installPrompt) return; installPrompt.prompt(); await installPrompt.userChoice; installPrompt = null; elements.installButton.hidden = true; }); window.addEventListener("appinstalled", () => { installPrompt = null; elements.installButton.hidden = true; });
   if ("serviceWorker" in navigator && location.protocol.startsWith("http")) navigator.serviceWorker.register("./service-worker.js").catch(console.error);
-  loadWallet(); if (config.apiUrl && Number(config.refreshMs) >= 10000) setInterval(loadWallet, Number(config.refreshMs));
+  loadSettings(); loadWallet(); if (config.apiUrl && Number(config.refreshMs) >= 10000) setInterval(loadWallet, Number(config.refreshMs));
 }());
-
 
