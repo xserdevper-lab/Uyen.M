@@ -1,122 +1,38 @@
 <!doctype html>
-<html lang="th">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#111111">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Uyen.M">
-  <meta name="description" content="กระเป๋าค่ากิน Uyen.M รับงบจากแอปเงินรวมและติดตามค่าอาหาร">
-  <title>Uyen.M Meal Wallet</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css?v=18">
-  <link rel="manifest" href="manifest.webmanifest">
-  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="assets/icon.svg">
-<style>.bottom-nav a.nav-item,.bottom-nav a.nav-item:link,.bottom-nav a.nav-item:visited,.bottom-nav a.nav-item:hover,.bottom-nav a.nav-item:active,.bottom-nav a.nav-item span{text-decoration:none!important;text-decoration-line:none!important}</style></head>
-<body>
-  <main class="app-shell">
-    <section class="wallet-app" aria-label="Uyen.M Wallet">
-      <header class="topbar">
-        <div class="profile">
-          <div class="avatar" id="avatar"><span>U</span><img id="profileImage" alt="" hidden></div>
-          <div><p class="eyebrow" data-i18n="hello">สวัสดี,</p><h1 id="displayName">Uyen Nguyen</h1></div>
-        </div>
-        <div class="topbar-actions">
-          <button class="icon-button" id="settingsButton" type="button" aria-label="ตั้งค่า">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-2.8 2.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2h-4V21a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1L4.2 17l.1-.1a1.7 1.7 0 0 0 .3-1.9A1.7 1.7 0 0 0 3 14H2.8v-4H3a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9L4.2 7 7 4.2l.1.1a1.7 1.7 0 0 0 1.9.3A1.7 1.7 0 0 0 10 3V2.8h4V3a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1L19.8 7l-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.2v4H21a1.7 1.7 0 0 0-1.6 1z"/></svg>
-          </button>
-          <button class="icon-button" id="refreshButton" type="button" aria-label="รีเฟรชข้อมูล">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8.1 8.1 0 0 0-15.5-2M4 4v5h5M4 13a8.1 8.1 0 0 0 15.5 2M20 20v-5h-5"/></svg>
-          </button>
-        </div>
-      </header>
-      <div class="content">
-        <p class="status-chip" id="statusChip" hidden></p>
-        <button class="install-button" id="installButton" type="button" hidden>ติดตั้งแอปบนเครื่องนี้</button>
-        <section class="hero-grid" aria-label="ยอดเงิน">
-          <article class="balance-card">
-            <div class="card-glow" aria-hidden="true"></div>
-            <div class="card-head"><span class="card-label" data-i18n="balanceLabel">ยอดเงินคงเหลือ</span><span class="brand-mark" aria-label="Uyen.M">U<span>M</span></span></div>
-            <p class="balance" id="balance">฿0.00</p>
-            <div class="card-foot">
-              <div><span class="muted" data-i18n="receivedFrom">รับจาก</span><strong data-i18n="mainApp">แอปเงินรวม</strong></div>
-              <div class="secure-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10V8a5 5 0 0 1 10 0v2M5 10h14v10H5z"/></svg><span data-i18n="noSelfTopup">เพิ่มเงินเองไม่ได้</span></div>
-            </div>
-          </article>
-        </section>
-        <section class="activity-grid">
-          <nav class="quick-actions" aria-label="เมนูด่วน">
-            <button class="quick-action" id="historyButton" type="button"><span class="quick-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4v5h5M5.5 9A8 8 0 1 1 4 14m8-6v5l3 2"/></svg></span><span data-i18n="history">ประวัติ</span></button>
-            <button class="quick-action" id="infoButton" type="button"><span class="quick-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8h.01"/></svg></span><span data-i18n="help">วิธีใช้</span></button>
-            <a class="quick-action" href="https://www.goldtraders.or.th/" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit"><span class="quick-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 8 8-8 12-8-12zM4 10h16M9 10l3 12 3-12"/></svg></span><span id="goldQuickLabel">ราคาทอง</span></a>
-          </nav>
-          <section class="activity" id="activitySection">
-            <div class="section-heading"><div><p class="eyebrow" data-i18n="activity">ความเคลื่อนไหว</p><h2 data-i18n="latest">รายการล่าสุด</h2></div><span class="last-sync" id="lastSync">ยังไม่ซิงก์</span></div>
-            <div class="transaction-list" id="transactionList" aria-live="polite">
-              <div class="empty-state"><div class="empty-icon">↗</div><p>ยังไม่มีรายการ</p><span>เมื่อแอปเงินรวมจ่ายเงิน รายการจะแสดงที่นี่</span></div>
-            </div>
-          </section>
-        </section>
-      </div>
-      <nav class="bottom-nav" aria-label="เมนูหลัก">
-  <a class="nav-item active" href="./"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 9-8 9 8v9h-6v-6H9v6H3z"/></svg><span data-i18n="home">หน้าหลัก</span></a>
-  <a class="nav-item " href="market.html"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l6-6 4 4 8-9M16 6h5v5"/></svg><span data-i18n="market">ข้อมูลวันนี้</span></a>
-  <a class="nav-item" href="./?action=pay" data-action="pay"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v11H4zM4 10h16"/></svg><span data-i18n="pay">Payment</span></a>
-  <a class="nav-item" href="./?action=request" data-action="request"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h11l-3-3m2 13H6l3 3"/></svg><span data-i18n="requestShort">คำขอ</span></a>
-</nav>
-    </section>
-  </main>
-  <dialog id="requestDialog">
-    <form id="requestForm" method="dialog">
-      <div class="dialog-header"><div><p class="eyebrow">ส่งไปยังแอปเงินรวม</p><h2>ขอรับเงิน</h2></div><button class="dialog-close" type="button" data-close aria-label="ปิด">×</button></div>
-      <label>จำนวนเงิน (บาท)<input id="requestAmount" name="amount" type="number" min="1" step="0.01" inputmode="decimal" placeholder="เช่น 2,000" required></label>
-      <label>เหตุผล<textarea id="requestNote" name="note" rows="3" maxlength="180" placeholder="ระบุเหตุผลสั้น ๆ" required></textarea></label>
-      <p class="form-note">การส่งคำขอไม่ทำให้ยอดเงินเพิ่ม ยอดจะเปลี่ยนเมื่อแอปเงินรวมอนุมัติและจ่ายให้เท่านั้น</p>
-      <button class="primary-button" id="submitRequest" type="submit">ส่งคำขอ</button>
-      <p class="form-message" id="formMessage" role="status"></p>
-    </form>
-  </dialog>
-  <dialog id="paymentDialog">
-    <form id="paymentForm" method="dialog">
-      <div class="dialog-header"><div><p class="eyebrow" data-i18n="sendViaMain">ส่งคำขอไปยังแอปเงินรวม</p><h2 data-i18n="pay">จ่ายเงิน</h2></div><button class="dialog-close" type="button" data-close aria-label="ปิด">×</button></div>
-      <label><span data-i18n="recipient">ร้านอาหาร</span><input id="paymentRecipient" name="recipient" maxlength="80" data-i18n-placeholder="recipientPlaceholder" placeholder="ชื่อร้านหรือรายการอาหาร" required></label>
-      <label><span data-i18n="amount">จำนวนเงิน (บาท)</span><input id="paymentAmount" name="amount" type="number" min="1" step="0.01" inputmode="decimal" placeholder="เช่น 500" required></label>
-      <label><span data-i18n="note">หมายเหตุ</span><textarea id="paymentNote" name="note" rows="2" maxlength="120" data-i18n-placeholder="optional" placeholder="ไม่บังคับ"></textarea></label>
-      <p class="form-note" data-i18n="paymentNotice">เมื่อกดจ่าย ระบบจะหักจากค่ากินคงเหลือทันที และไม่สามารถจ่ายเกินยอดได้</p>
-      <button class="primary-button" id="submitPayment" type="submit" data-i18n="sendPaymentRequest">จ่ายและหักค่ากิน</button>
-      <p class="form-message" id="paymentMessage" role="status"></p>
-    </form>
-  </dialog>
-  <dialog id="settingsDialog">
-    <div class="dialog-header"><div><p class="eyebrow">Uyen.M</p><h2 data-i18n="settings">ตั้งค่า</h2></div><button class="dialog-close" type="button" data-close aria-label="ปิด">×</button></div>
-    <div class="settings-name">
-      <label><span data-i18n="profileName">ชื่อที่แสดง</span><input id="profileName" type="text" maxlength="50" autocomplete="name" data-i18n-placeholder="namePlaceholder" placeholder="เช่น Uyen Nguyen"></label>
-      <button class="secondary-button" id="saveName" type="button" data-i18n="saveName">บันทึกชื่อ</button>
-    </div>
-    <div class="settings-profile">
-      <div class="avatar avatar-preview"><span>U</span><img id="settingsPreview" alt="" hidden></div>
-      <div><strong data-i18n="profilePhoto">รูปโปรไฟล์</strong><p data-i18n="profileHint">ไฟล์รูปจะเก็บในเครื่องนี้เท่านั้น</p></div>
-    </div>
-    <label><span data-i18n="choosePhoto">เลือกรูปภาพ</span><input id="profileInput" type="file" accept="image/png,image/jpeg,image/webp"></label>
-    <button class="secondary-button" id="removePhoto" type="button" data-i18n="removePhoto">ลบรูปโปรไฟล์</button>
-    <label><span data-i18n="language">ภาษา</span><select id="languageSelect"><option value="th">ไทย</option><option value="en">English</option></select></label>
-    <p class="form-message" id="settingsMessage" role="status"></p>
-  </dialog>
-  <dialog id="infoDialog">
-    <div class="dialog-header"><div><p class="eyebrow">การทำงานของกระเป๋า</p><h2>ยอดเงินมาจากไหน?</h2></div><button class="dialog-close" type="button" data-close aria-label="ปิด">×</button></div>
-    <ol class="info-steps"><li><span>1</span>ส่งคำขอรับเงินพร้อมจำนวนและเหตุผล</li><li><span>2</span>แอปเงินรวมตรวจสอบและอนุมัติ</li><li><span>3</span>เมื่อจ่ายแล้ว ยอดและรายการจะซิงก์จาก Google Sheet</li></ol>
-  </dialog>
-  <dialog id="historyDialog" class="history-dialog">
-    <div class="dialog-header"><div><p class="eyebrow" data-i18n="activity">ค่าใช้จ่าย</p><h2 data-i18n="historyTitle">ประวัติรับ–จ่าย</h2></div><button class="dialog-close" type="button" data-close aria-label="ปิด">×</button></div>
-    <div class="history-list transaction-list" id="historyList" aria-live="polite"></div>
-  </dialog>
-  <script src="config.js?v=4"></script>
-  <script src="assets/app.js?v=9"></script>
-<script>(function(){const label=document.getElementById("goldQuickLabel");if(label){const apply=()=>label.textContent=localStorage.getItem("uyen-language")==="en"?"Gold price":"ราคาทอง";apply();window.addEventListener("storage",apply);const select=document.getElementById("languageSelect");if(select)select.addEventListener("change",()=>setTimeout(apply,0));}})();</script></body>
-</html>
-
-
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#111827"><meta name="apple-mobile-web-app-capable" content="yes"><title>Uyen.M | เงินของเรา</title><link rel="manifest" href="manifest.webmanifest"><style>
+:root{font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;color:#f4f6fc;background:#0d111b}*{box-sizing:border-box}body{margin:0}button,input,select{font:inherit}button{cursor:pointer}main{max-width:540px;margin:auto;padding:22px 17px 100px}.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}.eyebrow{color:#9ba6bb;font-size:12px;margin:0 0 5px}h1{font-size:24px;margin:0;letter-spacing:-.6px}.pill{border:1px solid #343e50;border-radius:99px;padding:8px 12px;font-size:12px;color:#b6c5dc}.hero{background:linear-gradient(140deg,#293c64,#172338 68%,#172b31);padding:24px;border-radius:24px;box-shadow:0 12px 30px #0003}.hero small{color:#bfcce2}.amount{font-size:39px;font-weight:750;margin:7px 0 18px;letter-spacing:-1px}.split{display:flex;gap:10px}.mini{flex:1;background:#ffffff12;padding:12px;border-radius:14px}.mini b{display:block;margin-top:6px;font-size:17px}.mini small{font-size:11px}.section{margin-top:25px}.section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.section h2{font-size:17px;margin:0}.muted{color:#98a4ba;font-size:12px}.panel{background:#191f2d;border:1px solid #2a3243;border-radius:20px;padding:16px}.line{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #303849}.line:last-child{border:0}.line strong{font-size:14px}.line span{color:#b7c1d1;font-size:13px}.good{color:#75dcb4!important}.warn{color:#f2c579!important}.bar{height:9px;border-radius:20px;background:#303b4c;overflow:hidden;margin:14px 0 8px}.bar>div{height:100%;background:#68c9aa;border-radius:20px}.btn{border:0;border-radius:13px;padding:13px 16px;background:#9de4c8;color:#10271d;font-weight:750}.btn.secondary{background:#2a3547;color:#e8edf5}.btn.small{padding:8px 11px;font-size:12px}.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.actions button{width:100%}.bottom{position:fixed;bottom:0;left:0;right:0;background:#141b28eF;backdrop-filter:blur(15px);border-top:1px solid #2b3545;display:flex;justify-content:center;padding:10px 8px max(12px,env(safe-area-inset-bottom))}.bottom>div{display:flex;width:100%;max-width:540px;justify-content:space-around}.tab{background:none;color:#94a3b8;border:0;padding:8px 12px;font-size:12px}.tab.active{color:#a4edcf;font-weight:700}.hidden{display:none!important}.row-form{display:grid;gap:11px}label{display:block;font-size:13px;color:#c4cddd}input,select{display:block;width:100%;padding:12px;border:1px solid #414b60;border-radius:12px;background:#111827;color:white;margin-top:6px;min-width:0}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.empty{text-align:center;color:#9aa6bb;padding:24px 8px;font-size:13px}.note{font-size:12px;color:#a8b3c5;line-height:1.65}.badge{font-size:11px;border-radius:7px;padding:4px 7px;background:#28354b;color:#c9d6ea}.section-desc{font-size:12px;color:#a5b0c2;margin:5px 0 14px}.item-name{display:flex;flex-direction:column;gap:3px}.item-name small{color:#9daac0}.danger{color:#f4a9a9!important}dialog{background:#1a2230;color:#f4f6fc;border:1px solid #3a4659;border-radius:20px;width:min(94vw,450px);padding:20px}dialog::backdrop{background:#000a}.dialog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.dialog-top h2{margin:0;font-size:19px}.close{background:none;border:0;color:white;font-size:25px}.spacer{height:8px}
+</style></head><body><main><div class="top"><div><p class="eyebrow">UYEN.M · OUR MONEY</p><h1>เงินของเรา</h1></div><span class="pill" id="today"></span></div>
+<section id="home"><div class="hero"><small>เงินใช้ได้ตอนนี้ · ไม่รวมเงินเก็บล็อก</small><div class="amount" id="available">฿0</div><div class="split"><div class="mini"><small>เงินเก็บแยก</small><b id="protected">฿0</b></div><div class="mini"><small>เหลือใช้ต่อวันถึงวันเงินออก</small><b id="perday">฿0</b></div></div></div>
+<div class="actions"><button class="btn" onclick="openTxn('income')">+ บันทึกรายรับ</button><button class="btn secondary" onclick="openTxn('expense')">− บันทึกรายจ่าย</button></div>
+<div class="section"><div class="section-head"><h2>เงินพอถึงวันเงินออกไหม?</h2><span class="badge" id="nextpay"></span></div><div class="panel"><div class="line"><span>เงินที่มีจริง</span><strong id="actual"></strong></div><div class="line"><span>บิลที่ยังต้องจ่ายก่อนวันเงินออก</span><strong id="due"></strong></div><div class="line"><span>งบกินและน้ำมันที่ยังต้องใช้</span><strong id="living"></strong></div><div class="line"><span>เงินเหลือหลังกันงบ</span><strong id="afterreserve"></strong></div><div class="bar"><div id="progress"></div></div><div class="note" id="budgetnote"></div></div></div>
+<div class="section"><div class="section-head"><h2>รายการล่าสุด</h2><button class="btn small secondary" onclick="switchTab('history')">ดูทั้งหมด</button></div><div class="panel" id="recent"></div></div></section>
+<section id="plan" class="hidden"><div class="section-head"><h2>แผนรายรับ–รายจ่าย</h2><span class="badge">ปรับได้ทุกเมื่อ</span></div><p class="section-desc">ตัวเลขที่ตั้งไว้เป็นงบประมาณ ไม่ใช่รายการที่จ่ายแล้ว</p><div class="panel row-form"><div class="grid2"><label>เงินเดือนคุณ<input id="salaryA" type="number" min="0"></label><label>เงินเดือนแฟน<input id="salaryB" type="number" min="0"></label></div><div class="grid2"><label>เงินเดือนคุณออกวันที่<input id="payA" type="number" min="1" max="31"></label><label>เงินเดือนแฟนออกวันที่<input id="payB" type="number" min="1" max="31"></label></div><div class="grid2"><label>งบกินรวมต่อเดือน<input id="food" type="number" min="0"></label><label>ค่าน้ำมันรวมต่อเดือน<input id="fuel" type="number" min="0"></label></div><div class="grid2"><label>ค่าเช่าหอ<input id="rent" type="number" min="0"></label><label>ค่าน้ำไฟและส่วนกลาง<input id="utilities" type="number" min="0"></label></div><div class="grid2"><label>ค่าผ่อนรถ<input id="car" type="number" min="0"></label><label>ค่าเน็ต<input id="internet" type="number" min="0"></label></div><div class="grid2"><label>เงินประกันหอครั้งแรก<input id="deposit" type="number" min="0"></label><label>หนี้บัตรงวด ต.ค.<input id="cardOct" type="number" min="0"></label></div><label>หนี้บัตรงวดสุดท้าย พ.ย.<input id="cardNov" type="number" min="0"></label><button class="btn" onclick="savePlan()">บันทึกแผน</button></div><div class="section"><h2>ค่าใช้จ่ายประจำต่อเดือน</h2><div class="panel"><div class="line"><span>รายได้รวม</span><strong id="totalSalary"></strong></div><div class="line"><span>รายจ่ายประจำ</span><strong id="regular"></strong></div><div class="line"><span>เงินเหลือโดยประมาณ</span><strong id="surplus"></strong></div><p class="note">เงินประกันหอและหนี้บัตรเป็นรายจ่ายพิเศษ ไม่รวมในค่าใช้จ่ายประจำ เงินประกันอาจได้รับคืนตามเงื่อนไขสัญญา</p></div></div><div class="section"><h2>บิลที่กำลังจะมาถึง</h2><div class="panel" id="bills"></div></div></section>
+<section id="history" class="hidden"><div class="section-head"><h2>ประวัติเงินเข้า–ออก</h2><button class="btn small secondary" onclick="openTxn('expense')">+ เพิ่มรายการ</button></div><p class="section-desc">รายการที่บันทึกเท่านั้นจึงเปลี่ยนยอดเงินจริง</p><div class="panel" id="transactions"></div></section>
+<section id="savings" class="hidden"><div class="section-head"><h2>เงินเก็บห้ามใช้</h2><span class="badge">แยกจากเงินหมุนเวียน</span></div><div class="hero"><small>ยอดเงินขายคอมที่ได้รับจริง</small><div class="amount" id="savedTotal">฿0</div><div class="split"><div class="mini"><small>ยอดขายทั้งหมด</small><b id="savingTarget"></b></div><div class="mini"><small>ยังรอรับ</small><b id="savingRemaining"></b></div></div></div><div class="section"><div class="panel row-form"><label>ยอดขายคอมทั้งหมด<input id="target" type="number" min="0"></label><label>เงินที่ได้รับและแยกเก็บแล้ว<input id="saved" type="number" min="0"></label><button class="btn" onclick="saveSavings()">บันทึกยอดเงินเก็บ</button><p class="note">เมื่อได้รับเงินผ่อนคอมงวดใหม่ ให้เพิ่มเฉพาะยอดที่ได้รับจริง เงินก้อนนี้ไม่ถูกนำไปรวมกับเงินใช้ได้</p></div></div></section>
+</main><nav class="bottom"><div><button class="tab active" data-tab="home" onclick="switchTab('home')">⌂ หน้าหลัก</button><button class="tab" data-tab="plan" onclick="switchTab('plan')">▤ แผนเงิน</button><button class="tab" data-tab="history" onclick="switchTab('history')">⇄ รายการ</button><button class="tab" data-tab="savings" onclick="switchTab('savings')">♧ เงินเก็บ</button></div></nav>
+<dialog id="transactionDialog"><div class="dialog-top"><h2>บันทึกรายการ</h2><button class="close" onclick="document.getElementById('transactionDialog').close()">×</button></div><form class="row-form" onsubmit="addTxn(event)"><label>ประเภท<select id="txnType"><option value="expense">รายจ่าย</option><option value="income">รายรับ</option></select></label><label>จำนวนเงิน<input id="txnAmount" type="number" min=".01" step=".01" required></label><label>รายการ<input id="txnNote" maxlength="120" placeholder="เช่น เติมน้ำมัน / เงินเดือน" required></label><label>วันที่<input id="txnDate" type="date" required></label><button class="btn" type="submit">บันทึก</button></form></dialog>
+<script>
+const KEY='uyen-money-v2';const defaults={opening:9200,openingDate:'2026-10-22',plan:{salaryA:13200,salaryB:10600,payA:31,payB:20,food:5000,fuel:2000,rent:3000,utilities:760,car:3877,internet:540,deposit:3000,cardOct:2000,cardNov:3000},saving:{target:13000,saved:2000},tx:[]};
+let state;try{const s=JSON.parse(localStorage.getItem(KEY));state=s&&typeof s==='object'?{...defaults,...s,plan:{...defaults.plan,...s.plan},saving:{...defaults.saving,...s.saving},tx:Array.isArray(s.tx)?s.tx:[]}:structuredClone(defaults)}catch{state=structuredClone(defaults)}
+const $=id=>document.getElementById(id),money=n=>'฿'+Math.round(Number(n)||0).toLocaleString('th-TH'),n=v=>Math.max(0,Number(v)||0),save=()=>localStorage.setItem(KEY,JSON.stringify(state));
+const iso=d=>[d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');
+function dayDate(y,m,day){return new Date(y,m,Math.min(day,new Date(y,m+1,0).getDate()))}
+function nextPay(today,day){let d=dayDate(today.getFullYear(),today.getMonth(),day);if(d<new Date(today.getFullYear(),today.getMonth(),today.getDate()))d=dayDate(today.getFullYear(),today.getMonth()+1,day);return d}
+function transactionsBalance(){return state.tx.reduce((a,t)=>a+(t.type==='income'?1:-1)*n(t.amount),n(state.opening))}
+function billEvents(from,to){const p=state.plan,out=[];for(let y=from.getFullYear();y<=to.getFullYear();y++)for(let m=0;m<12;m++){let d=dayDate(y,m,1);if(d<new Date(from.getFullYear(),from.getMonth(),1)||d>to)continue;const add=(day,label,amount)=>{let date=dayDate(y,m,day);if(date>=from&&date<=to&&amount>0)out.push({date,label,amount})};add(1,'ผ่อนรถ',n(p.car));add(1,'ค่าเช่าหอ',n(p.rent));add(5,'ค่าเน็ต (วันสมมติ)',n(p.internet));add(5,'ค่าน้ำไฟ (วันสมมติ)',n(p.utilities));if(y===2026&&m===9)add(27,'บัตร ต.ค.',n(p.cardOct));if(y===2026&&m===10)add(27,'บัตรงวดสุดท้าย',n(p.cardNov));if(y===2026&&m===10)add(1,'ประกันหอครั้งแรก',n(p.deposit))}return out.sort((a,b)=>a.date-b.date)}
+function render(){const p=state.plan,now=new Date(),today=new Date(now.getFullYear(),now.getMonth(),now.getDate());$('today').textContent=today.toLocaleDateString('th-TH',{day:'numeric',month:'short',year:'numeric'});const bal=transactionsBalance();$('available').textContent=money(bal);$('actual').textContent=money(bal);$('protected').textContent=money(state.saving.saved);$('savedTotal').textContent=money(state.saving.saved);$('savingTarget').textContent=money(state.saving.target);$('savingRemaining').textContent=money(Math.max(0,state.saving.target-state.saving.saved));
+const pay=nextPay(today,p.payB);const days=Math.max(1,Math.ceil((pay-today)/86400000));const bills=billEvents(today,pay);const billSum=bills.reduce((a,b)=>a+b.amount,0);const living=(n(p.food)+n(p.fuel))/30*days;const left=bal-billSum-living;$('nextpay').textContent='ถึง '+pay.toLocaleDateString('th-TH',{day:'numeric',month:'short'});$('due').textContent=money(billSum);$('living').textContent=money(living);$('afterreserve').textContent=money(left);$('afterreserve').className=left<0?'danger':'good';$('perday').textContent=money(Math.max(0,(bal-billSum)/days));$('progress').style.width=Math.max(0,Math.min(100,bal?left/bal*100:0))+'%';$('budgetnote').textContent='ประมาณการอีก '+days+' วัน · งบกินและน้ำมันเฉลี่ย '+money((n(p.food)+n(p.fuel))/30)+'/วัน · ยังไม่รวมรายรับในอนาคตหรือรายการที่ยังไม่ได้บันทึก';
+const regular=['rent','utilities','car','internet','food','fuel'].reduce((a,k)=>a+n(p[k]),0),salary=n(p.salaryA)+n(p.salaryB);$('totalSalary').textContent=money(salary);$('regular').textContent=money(regular);$('surplus').textContent=money(salary-regular);
+for(const key of Object.keys(p))if($(key)&&document.activeElement!==$(key))$(key).value=p[key];$('target').value=state.saving.target;$('saved').value=state.saving.saved;
+const rows=state.tx.slice().sort((a,b)=>b.date.localeCompare(a.date)||b.id-a.id);function list(items){return items.length?items.map(t=>'<div class="line"><div class="item-name"><strong>'+esc(t.note)+'</strong><small>'+esc(t.date)+'</small></div><strong class="'+(t.type==='income'?'good':'')+'">'+(t.type==='income'?'+':'−')+money(t.amount)+'</strong></div>').join(''):'<div class="empty">ยังไม่มีรายการที่บันทึกไว้<br>เริ่มด้วยการเพิ่มรายรับหรือรายจ่ายจริง</div>'}
+$('recent').innerHTML=list(rows.slice(0,5));$('transactions').innerHTML=list(rows);
+$('bills').innerHTML=bills.length?bills.map(b=>'<div class="line"><div class="item-name"><strong>'+esc(b.label)+'</strong><small>'+b.date.toLocaleDateString('th-TH',{day:'numeric',month:'short'})+'</small></div><strong>'+money(b.amount)+'</strong></div>').join(''):'<div class="empty">ไม่มีบิลในช่วงนี้</div>';
+}
+function esc(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function switchTab(tab){for(const id of ['home','plan','history','savings'])$(id).classList.toggle('hidden',id!==tab);document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));scrollTo(0,0);render()}
+function openTxn(type){$('txnType').value=type;$('txnAmount').value='';$('txnNote').value='';$('txnDate').value=iso(new Date());$('transactionDialog').showModal()}
+function addTxn(e){e.preventDefault();const amount=Number($('txnAmount').value),type=$('txnType').value;if(!Number.isFinite(amount)||amount<=0)return alert('กรุณาระบุจำนวนเงินที่ถูกต้อง');if(type==='expense'&&amount>transactionsBalance()&&!confirm('รายจ่ายมากกว่าเงินที่มีอยู่ ต้องการบันทึกต่อหรือไม่?'))return;state.tx.push({id:Date.now(),date:$('txnDate').value,type,amount,note:$('txnNote').value.trim()});save();$('transactionDialog').close();render()}
+function savePlan(){for(const k of Object.keys(state.plan)){const el=$(k);if(el){const v=Number(el.value);if(!Number.isFinite(v)||v<0)return alert('กรุณาตรวจสอบตัวเลข');state.plan[k]=k.startsWith('pay')?Math.max(1,Math.min(31,Math.floor(v))):v}}save();render();alert('บันทึกแผนแล้ว')}
+function saveSavings(){const target=Number($('target').value),saved=Number($('saved').value);if(!Number.isFinite(target)||!Number.isFinite(saved)||target<0||saved<0)return alert('กรุณาตรวจสอบยอดเงิน');state.saving={target,saved};save();render();alert('บันทึกเงินเก็บแล้ว')}
+render();
+</script></body></html>
