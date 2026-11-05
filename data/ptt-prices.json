@@ -1,6 +1,6 @@
 {
   "source": "https://orapiweb.pttor.com/oilservice/OilPrice.asmx",
-  "updatedAt": "2026-11-05T11:04:27.910145+00:00",
+  "updatedAt": "2026-11-05T18:47:54.515892+00:00",
   "prices": [
     {
       "name": "ดีเซล B20",
@@ -8,23 +8,23 @@
     },
     {
       "name": "ดีเซล",
-      "price": 42.54
+      "price": 41.79
     },
     {
       "name": "เบนซินแก๊สโซฮอล์ E20",
-      "price": 32.8
+      "price": 31.8
     },
     {
       "name": "เบนซินแก๊สโซฮอล์ 91",
-      "price": 40.47
+      "price": 39.47
     },
     {
       "name": "เบนซินแก๊สโซฮอล์ 95",
-      "price": 40.84
+      "price": 39.84
     },
     {
       "name": "เบนซิน",
-      "price": 50.33
+      "price": 49.33
     },
     {
       "name": "Super Power GSH95",
