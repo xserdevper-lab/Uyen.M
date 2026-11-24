@@ -1,14 +1,14 @@
 {
   "source": "https://orapiweb.pttor.com/oilservice/OilPrice.asmx",
-  "updatedAt": "2026-11-24T11:02:23.256331+00:00",
+  "updatedAt": "2026-11-24T21:19:33.513814+00:00",
   "prices": [
     {
       "name": "ดีเซล B20",
-      "price": 33.5
+      "price": 32.9
     },
     {
       "name": "ดีเซล",
-      "price": 39.94
+      "price": 39.34
     },
     {
       "name": "เบนซินแก๊สโซฮอล์ E20",
